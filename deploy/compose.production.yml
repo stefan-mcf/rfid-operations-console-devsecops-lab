@@ -1,0 +1,26 @@
+name: rfid-ops-production
+
+services:
+  app:
+    image: ${RFID_OPS_IMAGE:?RFID_OPS_IMAGE is required}
+    restart: unless-stopped
+    ports:
+      - "${RFID_OPS_PRODUCTION_PORT:-28080}:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      RFID_OPS_READER_KEY: ${RFID_OPS_READER_KEY:?RFID_OPS_READER_KEY is required}
+      RFID_OPS_ADMIN_KEY: ${RFID_OPS_ADMIN_KEY:?RFID_OPS_ADMIN_KEY is required}
+    volumes:
+      - production-data:/app/data
+    labels:
+      dev.sit223.environment: production-like
+      dev.sit223.release: ${RFID_OPS_VERSION:?RFID_OPS_VERSION is required}
+    healthcheck:
+      test: ["CMD", "dotnet", "RfidOps.Api.dll", "--health-check"]
+      interval: 5s
+      timeout: 4s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  production-data:

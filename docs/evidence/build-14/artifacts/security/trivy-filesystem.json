@@ -1,0 +1,588 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2026-09-10T22:10:35.238390922Z",
+  "ArtifactName": ".",
+  "ArtifactType": "filesystem",
+  "Metadata": {
+    "RepoURL": "https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git",
+    "Commit": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+    "CommitMsg": "Verify retained console elements in deployment smoke checks",
+    "Author": "stefan-mcf \u003cmcfeeters.stefan@gmail.com\u003e",
+    "Committer": "stefan-mcf \u003cmcfeeters.stefan@gmail.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "src/RfidOps.Api/bin/Release/net10.0/RfidOps.Api.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Microsoft.Data.Sqlite.Core/10.0.5",
+          "Name": "Microsoft.Data.Sqlite.Core",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.5",
+            "UID": "edceaa83e690c98f"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 315,
+              "EndLine": 321
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.bundle_e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.bundle_e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.11",
+            "UID": "ef6709115949688b"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 322,
+              "EndLine": 328
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.core/2.1.11",
+          "Name": "SQLitePCLRaw.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.11",
+            "UID": "5122363446d304bc"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 329,
+              "EndLine": 335
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.lib.e_sqlite3/3.53.3",
+          "Name": "SQLitePCLRaw.lib.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@3.53.3",
+            "UID": "c378f1bf8a0bc4dd"
+          },
+          "Version": "3.53.3",
+          "Locations": [
+            {
+              "StartLine": 336,
+              "EndLine": 342
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.provider.e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.provider.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.11",
+            "UID": "521358120b255606"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 343,
+              "EndLine": 349
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Api.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Microsoft.Data.Sqlite.Core/10.0.5",
+          "Name": "Microsoft.Data.Sqlite.Core",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.5",
+            "UID": "71b19432912866fb"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 315,
+              "EndLine": 321
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.bundle_e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.bundle_e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.11",
+            "UID": "c84d9f055cb26787"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 322,
+              "EndLine": 328
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.core/2.1.11",
+          "Name": "SQLitePCLRaw.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.11",
+            "UID": "f1b2223d71485450"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 329,
+              "EndLine": 335
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.lib.e_sqlite3/3.53.3",
+          "Name": "SQLitePCLRaw.lib.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@3.53.3",
+            "UID": "1fb317c776da4715"
+          },
+          "Version": "3.53.3",
+          "Locations": [
+            {
+              "StartLine": 336,
+              "EndLine": 342
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.provider.e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.provider.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.11",
+            "UID": "e3c825ccd59d999a"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 343,
+              "EndLine": 349
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Tests.deps.json",
+      "Class": "lang-pkgs",
+      "Type": "dotnet-core",
+      "Packages": [
+        {
+          "ID": "Microsoft.ApplicationInsights/2.23.0",
+          "Name": "Microsoft.ApplicationInsights",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.ApplicationInsights@2.23.0",
+            "UID": "8e32fc6fe05352ee"
+          },
+          "Version": "2.23.0",
+          "Locations": [
+            {
+              "StartLine": 3423,
+              "EndLine": 3429
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.AspNetCore.Mvc.Testing/10.0.5",
+          "Name": "Microsoft.AspNetCore.Mvc.Testing",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.AspNetCore.Mvc.Testing@10.0.5",
+            "UID": "da0be331b87b1985"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 3430,
+              "EndLine": 3436
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.AspNetCore.TestHost/10.0.5",
+          "Name": "Microsoft.AspNetCore.TestHost",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.AspNetCore.TestHost@10.0.5",
+            "UID": "7494da5f22504565"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 3437,
+              "EndLine": 3443
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Bcl.AsyncInterfaces/6.0.0",
+          "Name": "Microsoft.Bcl.AsyncInterfaces",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Bcl.AsyncInterfaces@6.0.0",
+            "UID": "5c0582679b85a081"
+          },
+          "Version": "6.0.0",
+          "Locations": [
+            {
+              "StartLine": 3444,
+              "EndLine": 3450
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.CodeCoverage/18.3.0",
+          "Name": "Microsoft.CodeCoverage",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.CodeCoverage@18.3.0",
+            "UID": "50b257f22b399b37"
+          },
+          "Version": "18.3.0",
+          "Locations": [
+            {
+              "StartLine": 3451,
+              "EndLine": 3457
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Data.Sqlite.Core/10.0.5",
+          "Name": "Microsoft.Data.Sqlite.Core",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.5",
+            "UID": "fafc3e8cf63ec944"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 3465,
+              "EndLine": 3471
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Extensions.DependencyModel/10.0.5",
+          "Name": "Microsoft.Extensions.DependencyModel",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Extensions.DependencyModel@10.0.5",
+            "UID": "245e6569c5700a44"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 3472,
+              "EndLine": 3478
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.TestPlatform.ObjectModel/18.3.0",
+          "Name": "Microsoft.TestPlatform.ObjectModel",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.ObjectModel@18.3.0",
+            "UID": "6dc5767ed3b6f4d"
+          },
+          "Version": "18.3.0",
+          "Locations": [
+            {
+              "StartLine": 3514,
+              "EndLine": 3520
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.TestPlatform.TestHost/18.3.0",
+          "Name": "Microsoft.TestPlatform.TestHost",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.TestPlatform.TestHost@18.3.0",
+            "UID": "9fd693bce9a9ebc3"
+          },
+          "Version": "18.3.0",
+          "Locations": [
+            {
+              "StartLine": 3521,
+              "EndLine": 3527
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Testing.Extensions.Telemetry/1.9.1",
+          "Name": "Microsoft.Testing.Extensions.Telemetry",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Testing.Extensions.Telemetry@1.9.1",
+            "UID": "d67cadd30fc228a4"
+          },
+          "Version": "1.9.1",
+          "Locations": [
+            {
+              "StartLine": 3486,
+              "EndLine": 3492
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Testing.Extensions.TrxReport.Abstractions/1.9.1",
+          "Name": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Testing.Extensions.TrxReport.Abstractions@1.9.1",
+            "UID": "f42749abb741a07f"
+          },
+          "Version": "1.9.1",
+          "Locations": [
+            {
+              "StartLine": 3493,
+              "EndLine": 3499
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Testing.Platform/1.9.1",
+          "Name": "Microsoft.Testing.Platform",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Testing.Platform@1.9.1",
+            "UID": "6662aba49669649c"
+          },
+          "Version": "1.9.1",
+          "Locations": [
+            {
+              "StartLine": 3500,
+              "EndLine": 3506
+            }
+          ]
+        },
+        {
+          "ID": "Microsoft.Testing.Platform.MSBuild/1.9.1",
+          "Name": "Microsoft.Testing.Platform.MSBuild",
+          "Identifier": {
+            "PURL": "pkg:nuget/Microsoft.Testing.Platform.MSBuild@1.9.1",
+            "UID": "520fdc7033c30125"
+          },
+          "Version": "1.9.1",
+          "Locations": [
+            {
+              "StartLine": 3507,
+              "EndLine": 3513
+            }
+          ]
+        },
+        {
+          "ID": "Newtonsoft.Json/13.0.3",
+          "Name": "Newtonsoft.Json",
+          "Identifier": {
+            "PURL": "pkg:nuget/Newtonsoft.Json@13.0.3",
+            "UID": "a500b972df1284a1"
+          },
+          "Version": "13.0.3",
+          "Locations": [
+            {
+              "StartLine": 3528,
+              "EndLine": 3534
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.bundle_e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.bundle_e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.11",
+            "UID": "a69943a8b37ba039"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 3535,
+              "EndLine": 3541
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.core/2.1.11",
+          "Name": "SQLitePCLRaw.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.core@2.1.11",
+            "UID": "95924e01ebee8713"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 3542,
+              "EndLine": 3548
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.lib.e_sqlite3/3.53.3",
+          "Name": "SQLitePCLRaw.lib.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@3.53.3",
+            "UID": "d67bcfd1930723df"
+          },
+          "Version": "3.53.3",
+          "Locations": [
+            {
+              "StartLine": 3549,
+              "EndLine": 3555
+            }
+          ]
+        },
+        {
+          "ID": "SQLitePCLRaw.provider.e_sqlite3/2.1.11",
+          "Name": "SQLitePCLRaw.provider.e_sqlite3",
+          "Identifier": {
+            "PURL": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.11",
+            "UID": "34958be3d773256a"
+          },
+          "Version": "2.1.11",
+          "Locations": [
+            {
+              "StartLine": 3556,
+              "EndLine": 3562
+            }
+          ]
+        },
+        {
+          "ID": "System.Diagnostics.EventLog/10.0.5",
+          "Name": "System.Diagnostics.EventLog",
+          "Identifier": {
+            "PURL": "pkg:nuget/System.Diagnostics.EventLog@10.0.5",
+            "UID": "6d70f888a2a35f5e"
+          },
+          "Version": "10.0.5",
+          "Locations": [
+            {
+              "StartLine": 3563,
+              "EndLine": 3569
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.assert/3.2.2",
+          "Name": "xunit.v3.assert",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.assert@3.2.2",
+            "UID": "fa98d88a556882c2"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3577,
+              "EndLine": 3583
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.common/3.2.2",
+          "Name": "xunit.v3.common",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.common@3.2.2",
+            "UID": "81a8372cceffde04"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3584,
+              "EndLine": 3590
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.core.mtp-v1/3.2.2",
+          "Name": "xunit.v3.core.mtp-v1",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.core.mtp-v1@3.2.2",
+            "UID": "9dec8a941c2d5658"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3591,
+              "EndLine": 3597
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.extensibility.core/3.2.2",
+          "Name": "xunit.v3.extensibility.core",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.extensibility.core@3.2.2",
+            "UID": "c9c15c73819ef8d6"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3598,
+              "EndLine": 3604
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.runner.common/3.2.2",
+          "Name": "xunit.v3.runner.common",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.runner.common@3.2.2",
+            "UID": "e0ab1fb3426d3fa0"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3612,
+              "EndLine": 3618
+            }
+          ]
+        },
+        {
+          "ID": "xunit.v3.runner.inproc.console/3.2.2",
+          "Name": "xunit.v3.runner.inproc.console",
+          "Identifier": {
+            "PURL": "pkg:nuget/xunit.v3.runner.inproc.console@3.2.2",
+            "UID": "56261fa248b5aec0"
+          },
+          "Version": "3.2.2",
+          "Locations": [
+            {
+              "StartLine": 3619,
+              "EndLine": 3625
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 20,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "infra/jenkins/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 20,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "monitoring/Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 20,
+        "Failures": 0
+      }
+    }
+  ]
+}

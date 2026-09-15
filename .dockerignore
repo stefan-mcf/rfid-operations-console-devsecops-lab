@@ -1,0 +1,12 @@
+.git
+.github
+.pipeline
+artifacts
+**/bin
+**/obj
+data
+TestResults
+coverage
+*.db
+*.db-shm
+*.db-wal

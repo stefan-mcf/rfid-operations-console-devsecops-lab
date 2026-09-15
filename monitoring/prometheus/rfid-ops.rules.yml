@@ -1,0 +1,20 @@
+groups:
+  - name: rfid-operations-console
+    rules:
+      - alert: RfidOpsInstanceDown
+        expr: up{job="rfid-operations-console"} == 0
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: RFID Operations Console is unreachable
+          description: The production-like metrics endpoint has been unreachable for 15 seconds.
+
+      - alert: RfidOpsOutboxBacklog
+        expr: rfid_ops_outbox_pending > 10
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: RFID event outbox backlog is elevated
+          description: More than ten synthetic events are waiting for downstream acknowledgement.

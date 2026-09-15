@@ -1,0 +1,149 @@
+{
+  "_links": {
+    "self": {
+      "href": "/job/rfid-operations-console/14/wfapi/describe"
+    },
+    "changesets": {
+      "href": "/job/rfid-operations-console/14/wfapi/changesets"
+    },
+    "artifacts": {
+      "href": "/job/rfid-operations-console/14/wfapi/artifacts"
+    }
+  },
+  "id": "14",
+  "name": "#14",
+  "status": "SUCCESS",
+  "startTimeMillis": 1789078114170,
+  "endTimeMillis": 1789078309332,
+  "durationMillis": 195162,
+  "queueDurationMillis": 6,
+  "pauseDurationMillis": 0,
+  "stages": [
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/10/wfapi/describe"
+        }
+      },
+      "id": "10",
+      "name": "Checkout",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078115456,
+      "durationMillis": 1413,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/25/wfapi/describe"
+        }
+      },
+      "id": "25",
+      "name": "Build",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078116900,
+      "durationMillis": 88937,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/30/wfapi/describe"
+        }
+      },
+      "id": "30",
+      "name": "Test",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078205847,
+      "durationMillis": 5781,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/36/wfapi/describe"
+        }
+      },
+      "id": "36",
+      "name": "Code Quality",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078211636,
+      "durationMillis": 20533,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/45/wfapi/describe"
+        }
+      },
+      "id": "45",
+      "name": "Security",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078232176,
+      "durationMillis": 8214,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/50/wfapi/describe"
+        }
+      },
+      "id": "50",
+      "name": "Deploy",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078240421,
+      "durationMillis": 6823,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/59/wfapi/describe"
+        }
+      },
+      "id": "59",
+      "name": "Release",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078247254,
+      "durationMillis": 7984,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/68/wfapi/describe"
+        }
+      },
+      "id": "68",
+      "name": "Monitoring and Alerting",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078255248,
+      "durationMillis": 53432,
+      "pauseDurationMillis": 0
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/job/rfid-operations-console/14/execution/node/77/wfapi/describe"
+        }
+      },
+      "id": "77",
+      "name": "Declarative: Post Actions",
+      "execNode": "",
+      "status": "SUCCESS",
+      "startTimeMillis": 1789078308688,
+      "durationMillis": 600,
+      "pauseDurationMillis": 0
+    }
+  ]
+}

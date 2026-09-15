@@ -1,0 +1,42 @@
+{
+  "projectStatus": {
+    "status": "OK",
+    "conditions": [
+      {
+        "status": "OK",
+        "metricKey": "coverage",
+        "comparator": "LT",
+        "errorThreshold": "70",
+        "actualValue": "77.0"
+      },
+      {
+        "status": "OK",
+        "metricKey": "duplicated_lines_density",
+        "comparator": "GT",
+        "errorThreshold": "3",
+        "actualValue": "0.0"
+      },
+      {
+        "status": "OK",
+        "metricKey": "new_violations",
+        "comparator": "GT",
+        "errorThreshold": "0",
+        "actualValue": "0"
+      },
+      {
+        "status": "OK",
+        "metricKey": "software_quality_blocker_issues",
+        "comparator": "GT",
+        "errorThreshold": "0",
+        "actualValue": "0"
+      }
+    ],
+    "ignoredConditions": false,
+    "period": {
+      "mode": "PREVIOUS_VERSION",
+      "date": "2026-09-10T22:06:27+0000",
+      "parameter": "1.0.13-82e9e90"
+    },
+    "caycStatus": "over-compliant"
+  }
+}

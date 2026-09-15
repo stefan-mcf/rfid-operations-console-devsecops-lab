@@ -1,0 +1,332 @@
+{
+  "jenkins_build": 14,
+  "tested_revision": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+  "scope": "All non-Markdown source, test, pipeline, configuration and asset files; excludes docs/evidence.",
+  "files": [
+    {
+      "path": ".config/dotnet-tools.json",
+      "git_blob": "da5391d6a45aad28f83dc4e36a7904b4f99fec55",
+      "sha256": "63d0f251210f53af023a4cb0cdcad4dd64c22f97c03e7152314826fcf920cc5c"
+    },
+    {
+      "path": ".dockerignore",
+      "git_blob": "ed09fa784e7e7d72e0a5e2ba07eeccbe4da8fef6",
+      "sha256": "74eb49a8b29ba16c5d073dcb2a852d39dd3026188f9a5f58bd40aed7c12b9cac"
+    },
+    {
+      "path": ".editorconfig",
+      "git_blob": "f495f34b7bf731faeaca4ef5db822a7583f6e0bd",
+      "sha256": "65a03081c2be06168ac439deeea6c54473edb303e0c21c2e0a425ed41bb81957"
+    },
+    {
+      "path": ".env.example",
+      "git_blob": "6c2ee8e51a9c0d4a0692341e82e1f08a4ffdf450",
+      "sha256": "ebbbf07439b7f4c43188ce05b2458fdd50a2f11c9fab30fdea1b4c8d193a06e2"
+    },
+    {
+      "path": ".gitignore",
+      "git_blob": "b47a2536f312bf2b879fde9a8ed16ff9aca20dca",
+      "sha256": "feabab8b70dd686d9609df63d6549bca55ae00580e1d9de2977febe56a78a619"
+    },
+    {
+      "path": "Directory.Build.props",
+      "git_blob": "442b7b7bac52f33b3dd9560ff1772f4891ba579b",
+      "sha256": "6655865dbdb91dca119e1c12c751cab708e1037f26ac3b58f7ef57a37a5a76f8"
+    },
+    {
+      "path": "Dockerfile",
+      "git_blob": "682c1890bd9689221ab6baba7d46a706cca65f63",
+      "sha256": "59f39ee29989520e99240e9fc029345a76ded4a73917e668675ba61db0cf5209"
+    },
+    {
+      "path": "Jenkinsfile",
+      "git_blob": "a0d04c7429f3266190d8d721e1f2f551ea9e4c84",
+      "sha256": "b0db9a1011fba29d8dc7ca29c81d383dcae528ce9a0523c271bff89350478f40"
+    },
+    {
+      "path": "RfidOperationsConsole.slnx",
+      "git_blob": "711844d7350fb2d0d0855d7cfebc66faf2f5915b",
+      "sha256": "055cc3832f6001c08d69f0329901ee0b3e4d797637b03b69ccd1cc6f5278db26"
+    },
+    {
+      "path": "artifacts/.gitkeep",
+      "git_blob": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "deploy/compose.production.yml",
+      "git_blob": "86f2bc8c1e425a89e739742eff2f0ba76c3c3fba",
+      "sha256": "a1f25165c354c122b968da8ba4f0f872323b4059e677298528f78db7ae16b73f"
+    },
+    {
+      "path": "deploy/compose.staging.yml",
+      "git_blob": "a3d363e36061e47ee9fdcdbc9e8ecb86e9a3b38e",
+      "sha256": "365c426251976ee901aef66cbb1529efc0c227a14ac8af0757b4e42230ef922c"
+    },
+    {
+      "path": "global.json",
+      "git_blob": "2caee48e03af546755ab83ac11925a096b2d643f",
+      "sha256": "41c662b35cf6f34e03b835cb9c2a1e715c6da00e3805efea8ba7a7edc289da19"
+    },
+    {
+      "path": "infra/jenkins/Dockerfile",
+      "git_blob": "bed96f58d8802a6cd2fc73a3d948ec67792bed92",
+      "sha256": "cfa9870a9a2dc59d2b7199c77c1c1aaf0b93e50fb431e7da7dad727f51204ea9"
+    },
+    {
+      "path": "infra/jenkins/casc/jenkins.yml",
+      "git_blob": "9be3c89548af77f3d7f36a7603bcfb51922d322c",
+      "sha256": "33bedd15a423381d9c387f69123378620ed4b37d090f7ece49095b5c3ba0055d"
+    },
+    {
+      "path": "infra/jenkins/compose.jenkins.yml",
+      "git_blob": "23d4c4317059cfd7d529d936659178c5fb1a569b",
+      "sha256": "7a09c2fc038dbec80e586e6db78355285cac9fa475596af75687f70067420026"
+    },
+    {
+      "path": "infra/jenkins/jenkins.env.example",
+      "git_blob": "64fd5521805409319391c7d715cb11d8ffb9ca64",
+      "sha256": "8837fca86778fe3d43046675eb3ad0314b24ed3195ed7e9b9c776cd718d1d352"
+    },
+    {
+      "path": "monitoring/Dockerfile",
+      "git_blob": "527a0bedc42a24ebe03aca8d937d9112e37601ac",
+      "sha256": "2f20986e5dbd1ac3ac287f9d845eb3bf81f2e913860fb48927abd6bd042e5761"
+    },
+    {
+      "path": "monitoring/alertmanager/alertmanager.yml",
+      "git_blob": "394e2813d10b9768f007b1bfcb242075d2549278",
+      "sha256": "1615ce7f870eb52be8651d25a55f2f0da5267e9b81bac6f4bbb9997740915593"
+    },
+    {
+      "path": "monitoring/compose.monitoring.yml",
+      "git_blob": "98338ebbdc814ac96f755c6954e1f0cd20cbf0fb",
+      "sha256": "6d17e3d62ca159857f23f5287e9e319404e0ad38e97fd1b242e828ab0c88a979"
+    },
+    {
+      "path": "monitoring/grafana/dashboards/rfid-operations.json",
+      "git_blob": "26616edb4e898835683e04f0df779b7956b8fcc9",
+      "sha256": "cec0b3a74f5a28efed102e98522752c3cdeb1d84e4974c9ef5ea4b598bccb676"
+    },
+    {
+      "path": "monitoring/grafana/provisioning/dashboards/default.yml",
+      "git_blob": "1f13f3dcc8b32754b222c9b0d191041098eb78f9",
+      "sha256": "c0ef1a0a3af87394c77cee9884d94d995f120c2ae6fae81a151fea7520ad09cf"
+    },
+    {
+      "path": "monitoring/grafana/provisioning/datasources/prometheus.yml",
+      "git_blob": "34d97c09109f2dcc3f4dc13bb5133eeb47aaf500",
+      "sha256": "b8d9f5245959d34310fe0e0f9741dcce07d726f81e826147ee24398524abfb2b"
+    },
+    {
+      "path": "monitoring/prometheus/prometheus.yml",
+      "git_blob": "71029701e329d8461cb0f952a5379f8d3c436f13",
+      "sha256": "de927c0e2a6e20be827c7c46678b0d5ba93bb798a26cbe8a7af008210e45e026"
+    },
+    {
+      "path": "monitoring/prometheus/rfid-ops.rules.yml",
+      "git_blob": "23090f5a3f455d0518b9ba2bdcd07bc30c8fd378",
+      "sha256": "e4c766c9be86f1801178675d7a44a42ee28ec8ad6c301aa0440aaea04a723aab"
+    },
+    {
+      "path": "scripts/ci/build.sh",
+      "git_blob": "fb05bba3307866251f8efabce4cd2cc31efa8b22",
+      "sha256": "62efd0d04cc304e0b4df817cc52cf755700d7b1876f90259be8d19da1d433842"
+    },
+    {
+      "path": "scripts/ci/common.sh",
+      "git_blob": "08661b7a5c26c4f8c3678d9a230d89d1b1339f0c",
+      "sha256": "6c2c949489c574be4ac6cfc8899c7c710fcefc2516eb94121cbfaf5979638f7b"
+    },
+    {
+      "path": "scripts/ci/deploy.sh",
+      "git_blob": "784f93847c50b7f936b49c8cb57056dc4ed0e8ba",
+      "sha256": "959035d715c0f2eee857f88a1377ac8b1fed6f402a9dd1ada00ef80d7cab2624"
+    },
+    {
+      "path": "scripts/ci/monitor.sh",
+      "git_blob": "9f4de186a2aa79deb32db44a1d534bb4072920ed",
+      "sha256": "b5839815ecd53e00e6e08459eb80f6e3579af4af330d74b47f6b1d903388d471"
+    },
+    {
+      "path": "scripts/ci/quality.sh",
+      "git_blob": "d0aa326b01a2eaeb12f7da6b99277461fe06adf6",
+      "sha256": "958087b6884985dde9b5afed33279b43c8de3980c48d76ab65a2fac1cda65971"
+    },
+    {
+      "path": "scripts/ci/release.sh",
+      "git_blob": "416f3862bf0fcea4f9b1ccd41ffc8f70b2e790fd",
+      "sha256": "320c0ea7e94dcd6fef65346324d02dbad04812b86bd095ecaace176127e2ca6d"
+    },
+    {
+      "path": "scripts/ci/rollback.sh",
+      "git_blob": "39b7412fb8e1b7777a0ad18a7f5334a9488d7d34",
+      "sha256": "208c7566c7a5a9295084f63bce54a770c0d40cb9a39a874a00686d66151ceb28"
+    },
+    {
+      "path": "scripts/ci/security.sh",
+      "git_blob": "f6fbcc7fdb9eecc60f8e7e2cc9bb57d975fee085",
+      "sha256": "f80742d94b1b14fce3733ba3e016076c3afbb773cede7f3793b31685da8db420"
+    },
+    {
+      "path": "scripts/ci/smoke.sh",
+      "git_blob": "cebe511983cc0ddf1003431284e9f38fd3ac7a3f",
+      "sha256": "ff31694833ac39673e21a4cb1ee208a3ac9c028a940b79f07537c0f276e0b053"
+    },
+    {
+      "path": "scripts/ci/test.sh",
+      "git_blob": "6f8bfc396389a9e4eeceee7d277b0fa61bfee590",
+      "sha256": "b79166f1c8ca034767e8909a6aa7490af5bc41dee5d7a892dc41b98e641c2703"
+    },
+    {
+      "path": "src/RfidOps.Api/Contracts.cs",
+      "git_blob": "f761a00c8e138147c3cb53fac34dee02e414375c",
+      "sha256": "6fe84cb528a9cbf4a64b70445164382ca9024483c3d568b35eb37ada0b197308"
+    },
+    {
+      "path": "src/RfidOps.Api/EndpointMappings.cs",
+      "git_blob": "b7bc1472d24ad125feb875fb040c80f826ad1b78",
+      "sha256": "5a61b247499ec5e3ca9572123f61e430e4f30e80507fc95bc54ded24ae700de7"
+    },
+    {
+      "path": "src/RfidOps.Api/HealthCheckCommand.cs",
+      "git_blob": "5d18bb2681eecfcfa16ea8abdaa92655d9266673",
+      "sha256": "70aa8f452ffc694c42ffd523553bb57238d5b29cc0c6223b25592a98b7b094f6"
+    },
+    {
+      "path": "src/RfidOps.Api/Program.cs",
+      "git_blob": "ce65d3016751d3456955fea6f785c97de6d3714a",
+      "sha256": "c43fb6cd64d0a2be8acf8bda3cfad81d2f278569f9870c213836018a032ab7e6"
+    },
+    {
+      "path": "src/RfidOps.Api/RfidOps.Api.csproj",
+      "git_blob": "cd73a73f63d8de50bbaf5f1196c73715e6820772",
+      "sha256": "a01ed52d64024e789d0f428e444ab20cce9421c5519e275c502e05ccba659b76"
+    },
+    {
+      "path": "src/RfidOps.Api/Security/ApiKeyEndpointFilter.cs",
+      "git_blob": "825debb750f59dd5b72966f5311c11db52525a3f",
+      "sha256": "f20bde202a93c4df9e53a0d903c2a382068c8ec8f8099bc07ba00c439e5b5c9d"
+    },
+    {
+      "path": "src/RfidOps.Api/Storage/OperationsModels.cs",
+      "git_blob": "d9435fb98e4c5ad5ab02eba628058ca30f344de6",
+      "sha256": "a09bacce326ee1c7c168e30fef9a950c1f210dd095bdb71de63f2f4c2c9dc470"
+    },
+    {
+      "path": "src/RfidOps.Api/Storage/SqliteOperationsStore.cs",
+      "git_blob": "9ca8b0458ab4b3445cb4c6302ce58abc24d5a9be",
+      "sha256": "401fb8dc4f7e17c0592f28a60e95e5157284015bc875c6f7ca46d36d30f3b554"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/app.js",
+      "git_blob": "38b5e931541b2c55c0440a476745402e454f4fc6",
+      "sha256": "98e6b2c834d221e8a8f3f2c8baff80db7a97b86fc144913476f0d52f2e75db92"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/fonts/IBMPlexMono-Regular-Latin1.woff2",
+      "git_blob": "2fdc4b550f9be2dccb63b410adad1967bf6ed30d",
+      "sha256": "e8993d946649b9d01abb1ed06d574b19d8ea3e66b5c3948602db335c44c18e56"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/fonts/IBMPlexSans-Light-Latin1.woff2",
+      "git_blob": "150818b9f58d8dfb6482056153142c30dd368fff",
+      "sha256": "a21e7db1965d4c7af07213226fb11ccd2f61a87a0045ce1fed7cd22918431144"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/fonts/IBMPlexSans-Regular-Latin1.woff2",
+      "git_blob": "a9c6407beda454c594b6f7c312e70e4c5d1ab99c",
+      "sha256": "b5ad7bd39f996144915f0ad9849a90183b27d8c28ad97ed98af5b1bebc51f6b1"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/fonts/IBMPlexSans-SemiBold-Latin1.woff2",
+      "git_blob": "bcdeaa5217836dc043ff244da04a8d7dd57be69a",
+      "sha256": "fff0ab3a88b0b4aa0b693e4f0201359a15183b08e3fa5696d1918d8f0ade8ad5"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/fonts/LICENSE.txt",
+      "git_blob": "c35c4c618fab33da8695177b3a6cefe0810b7b28",
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/index.html",
+      "git_blob": "2eda16dd898b911a21dc8527c5484c4ab39e2ab2",
+      "sha256": "e9f14bb1dc42b282e69ad9f4070b38528b42d65a9b3ae6e3b62a69e88e7daa85"
+    },
+    {
+      "path": "src/RfidOps.Api/wwwroot/styles.css",
+      "git_blob": "d576e8e5666b028783da065c2b61c78cbd11c40d",
+      "sha256": "faae24365be3e8d27af901de351309629a1d972808b959c7b3fd99406a2bd16f"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/AccessDecision.cs",
+      "git_blob": "1f0b890669bf5bc1b0b18f2722be41348dcb2d02",
+      "sha256": "2e8eb81a265acf3b04b024e30175f6b147a1d3705ba5f7326fc5b72755729581"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/AccessDecisionService.cs",
+      "git_blob": "ec9a6db5a21dfcef16efd72000c6598763174f10",
+      "sha256": "ec9af6e4f8a2a3302d8320941ca65dc3a16c5f7ba56bd9e0fd821c4ec98ef372"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/ReaderEvent.cs",
+      "git_blob": "e5dba353b6754df4214a3f614dc5b68c7f41b413",
+      "sha256": "da7c8a7e7c9523d5460f0c3d2d50a74e7fdc86965210e5e5c92837ff6caa6159"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/ReaderIdentifier.cs",
+      "git_blob": "ddfbf19ddc8fecfbdc5f89d82339e47b012f01dd",
+      "sha256": "c4c449a9db0103835d1c2021f3ead4e9d6fb2d9a01dc04705f39a63a0caa35ef"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/TagIdentifier.cs",
+      "git_blob": "05b524525b9184a92c51f44e7a465473f40944d9",
+      "sha256": "37fe2fe5d5d9a0f3bfc192909cefb2abbe9930b0518eeb647c260c35711396ea"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/TagRegistration.cs",
+      "git_blob": "eb04144086f528ed873fe636f12cdd5edaed625c",
+      "sha256": "cf50b6fcfa86c48671da2618c5e498de8f636848803495d9d00707904c2eabf9"
+    },
+    {
+      "path": "src/RfidOps.Core/Domain/TagState.cs",
+      "git_blob": "a0b6943b5573d1c049e5b1c603008f6211bbe6a6",
+      "sha256": "9c04706dc47f8d4c2ec148fafbe080198c8d4e8494b39961818284ee1eaa68e8"
+    },
+    {
+      "path": "src/RfidOps.Core/RfidOps.Core.csproj",
+      "git_blob": "6948928ab862dda594326dba40fe32ec58943608",
+      "sha256": "902c6f14990705c1daed6fe1e528b0b3839b085a63a28ee051d0ac0085bc61b3"
+    },
+    {
+      "path": "tests/RfidOps.Tests/AccessDecisionServiceTests.cs",
+      "git_blob": "be38fa4b71ec9d77848f59891bd36557f3f87b32",
+      "sha256": "e56eb23a97a978fccdc77eb0bd07f6b2f2efea449b22d9914bd415e415bd355c"
+    },
+    {
+      "path": "tests/RfidOps.Tests/ApiIntegrationTests.cs",
+      "git_blob": "0d90cc92bdeee3ab9c39e96297000e3e4888e425",
+      "sha256": "4fb7eaedb609c64efe6f985802a3ddc32a6d2483ecaf0ed7707e57ecb95ad6d0"
+    },
+    {
+      "path": "tests/RfidOps.Tests/IdentifierTests.cs",
+      "git_blob": "f8411f140b9ef0a0b031e82ca161435862701b0e",
+      "sha256": "5c71016a463d64eed260d62100c0a7f36ef0be2d3a644fdd84bd3da916e39510"
+    },
+    {
+      "path": "tests/RfidOps.Tests/RfidOps.Tests.csproj",
+      "git_blob": "0e5361d8142b5ec4638deca04532b9b3e0661fe5",
+      "sha256": "34262e5c8a95f50d4084e88e4ecd76a3b66e958db420ce8f6dfd9643a03dfd71"
+    },
+    {
+      "path": "tests/RfidOps.Tests/SqliteOperationsStoreTests.cs",
+      "git_blob": "72b7a2421e85a481ffb3f0648d709d4986cd1e6d",
+      "sha256": "ffd5ed34608513603d992eb94e84006c3cbfc49d3ab6d70a4b276fb61c084601"
+    },
+    {
+      "path": "tests/RfidOps.Tests/Usings.cs",
+      "git_blob": "b36d6886ab78b7f2db9573b61419be5ef4d4b5a8",
+      "sha256": "1928674224d50a5637069408d9b46a5f64403527da0896bad3d55508b02fa35b"
+    }
+  ]
+}

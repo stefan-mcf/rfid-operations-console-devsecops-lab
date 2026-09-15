@@ -1,0 +1,69 @@
+jenkins:
+  systemMessage: "SIT223 7.3HD local evidence controller - synthetic RFID lab only"
+  numExecutors: 1
+  mode: NORMAL
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID}"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: github-coursework-token
+              description: Private coursework repository read credential
+              username: "${GITHUB_USERNAME}"
+              password: "${GITHUB_TOKEN}"
+          - string:
+              scope: GLOBAL
+              id: rfid-ops-reader-key
+              description: Synthetic reader mutation key
+              secret: "${RFID_OPS_READER_KEY}"
+          - string:
+              scope: GLOBAL
+              id: rfid-ops-admin-key
+              description: Synthetic administration key
+              secret: "${RFID_OPS_ADMIN_KEY}"
+          - string:
+              scope: GLOBAL
+              id: sonar-token
+              description: Local SonarQube analysis token
+              secret: "${SONAR_TOKEN}"
+          - string:
+              scope: GLOBAL
+              id: grafana-admin-password
+              description: Local Grafana evidence account password
+              secret: "${GRAFANA_ADMIN_PASSWORD}"
+
+unclassified:
+  location:
+    url: http://localhost:28082/
+
+jobs:
+  - script: >
+      pipelineJob('rfid-operations-console') {
+        description('Seven-stage SIT223 7.3HD DevSecOps pipeline for the synthetic RFID operations lab.')
+        disabled(false)
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git')
+                  credentials('github-coursework-token')
+                }
+                branch('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(true)
+          }
+        }
+      }

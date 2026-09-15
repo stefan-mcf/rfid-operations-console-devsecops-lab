@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Client-neutral RFID operations simulator and DevSecOps pipeline demonstration.">
+  <title>RFID Operations Console</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <p class="system-label">RFID OPERATIONS / LOCAL SIMULATION</p>
+      <h1>Access decision console</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="metrics" aria-label="Operational metrics">
+      <article>
+        <span>Registered tags</span>
+        <strong id="registered-tags">-</strong>
+      </article>
+      <article>
+        <span>Access events</span>
+        <strong id="access-events">-</strong>
+      </article>
+      <article>
+        <span>Granted</span>
+        <strong id="granted-events">-</strong>
+      </article>
+      <article>
+        <span>Denied</span>
+        <strong id="denied-events">-</strong>
+      </article>
+      <article>
+        <span>Pending outbox</span>
+        <strong id="pending-outbox">-</strong>
+      </article>
+    </section>
+
+    <div class="workspace">
+      <section class="event-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Recent decisions</h2>
+            <p>Newest synthetic reader events and delivery state.</p>
+          </div>
+          <button id="refresh-button" type="button" class="button button--secondary">Refresh</button>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Tag</th>
+                <th scope="col">Reader</th>
+                <th scope="col">Decision</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Outbox</th>
+              </tr>
+            </thead>
+            <tbody id="event-rows">
+              <tr><td colspan="6" class="empty-state">Loading event history...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="command-panel" aria-label="Simulation controls">
+        <div class="section-heading section-heading--stacked">
+          <h2>Simulation controls</h2>
+          <p>Enter local API keys to register tags and send reader events.</p>
+        </div>
+
+        <form id="tag-form">
+          <h3>Register a synthetic tag</h3>
+          <div class="form-fields">
+            <div>
+              <label for="admin-key">Administrator key</label>
+              <input id="admin-key" name="adminKey" type="password" autocomplete="off" required minlength="16">
+            </div>
+            <div>
+              <label for="tag-id">Tag ID</label>
+              <input id="tag-id" name="tagId" value="DEMO-TAG-001" required pattern="[A-Za-z0-9][A-Za-z0-9-]{1,62}[A-Za-z0-9]">
+            </div>
+            <div>
+              <label for="display-name">Display name</label>
+              <input id="display-name" name="displayName" value="Demo vehicle" required maxlength="80">
+            </div>
+            <div>
+              <label for="tag-state">State</label>
+              <select id="tag-state" name="state">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="button button--primary">Save tag</button>
+        </form>
+
+        <form id="event-form">
+          <h3>Send a reader event</h3>
+          <div class="form-fields">
+            <div>
+              <label for="reader-key">Reader key</label>
+              <input id="reader-key" name="readerKey" type="password" autocomplete="off" required minlength="16">
+            </div>
+            <div>
+              <label for="event-tag-id">Tag ID</label>
+              <input id="event-tag-id" name="tagId" value="DEMO-TAG-001" required>
+            </div>
+            <div>
+              <label for="reader-id">Reader ID</label>
+              <input id="reader-id" name="readerId" value="DEMO-READER-01" required>
+            </div>
+          </div>
+
+          <button type="submit" class="button button--primary">Process event</button>
+        </form>
+
+        <p id="command-result" class="command-result" role="status"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+name: rfid-ops-monitoring
+
+services:
+  prometheus:
+    image: ${RFID_OPS_PROMETHEUS_IMAGE:?RFID_OPS_PROMETHEUS_IMAGE is required}
+    container_name: rfid-ops-prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=1d
+    ports:
+      - "29090:9090"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - alertmanager
+
+  alertmanager:
+    image: ${RFID_OPS_ALERTMANAGER_IMAGE:?RFID_OPS_ALERTMANAGER_IMAGE is required}
+    container_name: rfid-ops-alertmanager
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+    ports:
+      - "29093:9093"
+    depends_on:
+      - alert-receiver
+
+  alert-receiver:
+    image: mendhak/http-https-echo:37
+    container_name: rfid-ops-alert-receiver
+    restart: unless-stopped
+    environment:
+      HTTP_PORT: "8080"
+
+  grafana:
+    image: ${RFID_OPS_GRAFANA_IMAGE:?RFID_OPS_GRAFANA_IMAGE is required}
+    container_name: rfid-ops-grafana
+    restart: unless-stopped
+    ports:
+      - "23000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?GRAFANA_ADMIN_PASSWORD is required}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    depends_on:
+      - prometheus

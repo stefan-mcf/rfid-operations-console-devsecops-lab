@@ -1,0 +1,25 @@
+name: rfid-ops-staging
+
+services:
+  app:
+    image: ${RFID_OPS_IMAGE:?RFID_OPS_IMAGE is required}
+    restart: unless-stopped
+    ports:
+      - "${RFID_OPS_STAGING_PORT:-18080}:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+      RFID_OPS_READER_KEY: ${RFID_OPS_READER_KEY:?RFID_OPS_READER_KEY is required}
+      RFID_OPS_ADMIN_KEY: ${RFID_OPS_ADMIN_KEY:?RFID_OPS_ADMIN_KEY is required}
+    volumes:
+      - staging-data:/app/data
+    labels:
+      dev.sit223.environment: staging
+    healthcheck:
+      test: ["CMD", "dotnet", "RfidOps.Api.dll", "--health-check"]
+      interval: 5s
+      timeout: 4s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  staging-data:

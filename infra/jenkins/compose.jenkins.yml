@@ -1,0 +1,52 @@
+name: rfid-ops-ci
+
+services:
+  jenkins:
+    build:
+      context: ../..
+      dockerfile: infra/jenkins/Dockerfile
+    image: rfid-ops-jenkins:lts-jdk21
+    container_name: rfid-ops-jenkins
+    user: root
+    restart: unless-stopped
+    ports:
+      - "28082:8080"
+      - "50073:50000"
+    environment:
+      CASC_JENKINS_CONFIG: /var/jenkins_casc/jenkins.yml
+      JENKINS_ADMIN_ID: ${JENKINS_ADMIN_ID:?JENKINS_ADMIN_ID is required}
+      JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD:?JENKINS_ADMIN_PASSWORD is required}
+      GITHUB_USERNAME: ${GITHUB_USERNAME:?GITHUB_USERNAME is required}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:?GITHUB_TOKEN is required}
+      RFID_OPS_READER_KEY: ${RFID_OPS_READER_KEY:?RFID_OPS_READER_KEY is required}
+      RFID_OPS_ADMIN_KEY: ${RFID_OPS_ADMIN_KEY:?RFID_OPS_ADMIN_KEY is required}
+      SONAR_TOKEN: ${SONAR_TOKEN:?SONAR_TOKEN is required}
+      GRAFANA_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?GRAFANA_ADMIN_PASSWORD is required}
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - ./casc:/var/jenkins_casc:ro
+      - ${DOCKER_SOCKET_PATH:-/var/run/docker.sock}:/var/run/docker.sock
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  sonarqube:
+    image: sonarqube:26.8.0.126808-community
+    container_name: rfid-ops-sonarqube
+    restart: unless-stopped
+    ports:
+      - "29000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+      SONAR_TELEMETRY_ENABLE: "false"
+      SONAR_WEB_JAVAOPTS: "-Xms128m -Xmx256m -XX:+HeapDumpOnOutOfMemoryError"
+      SONAR_CE_JAVAOPTS: "-Xms128m -Xmx256m -XX:+HeapDumpOnOutOfMemoryError"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-logs:/opt/sonarqube/logs
+
+volumes:
+  jenkins-home:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:

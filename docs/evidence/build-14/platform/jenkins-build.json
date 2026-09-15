@@ -1,0 +1,287 @@
+{
+  "_class": "org.jenkinsci.plugins.workflow.job.WorkflowRun",
+  "actions": [
+    {
+      "_class": "hudson.model.CauseAction",
+      "causes": [
+        {
+          "_class": "hudson.model.Cause$UserIdCause",
+          "shortDescription": "Started by user local-admin",
+          "userId": "local-admin",
+          "userName": "local-admin"
+        }
+      ]
+    },
+    {
+      "_class": "org.jenkinsci.plugins.workflow.libs.LibrariesAction"
+    },
+    {},
+    {},
+    {
+      "_class": "hudson.plugins.git.util.BuildData",
+      "buildsByBranchName": {
+        "refs/remotes/origin/main": {
+          "_class": "hudson.plugins.git.util.Build",
+          "buildNumber": 14,
+          "buildResult": null,
+          "marked": {
+            "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+            "branch": [
+              {
+                "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+                "name": "refs/remotes/origin/main"
+              }
+            ]
+          },
+          "revision": {
+            "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+            "branch": [
+              {
+                "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+                "name": "refs/remotes/origin/main"
+              }
+            ]
+          }
+        }
+      },
+      "lastBuiltRevision": {
+        "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+        "branch": [
+          {
+            "SHA1": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+            "name": "refs/remotes/origin/main"
+          }
+        ]
+      },
+      "remoteUrls": [
+        "https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git"
+      ],
+      "scmName": ""
+    },
+    {},
+    {
+      "_class": "org.jenkinsci.plugins.workflow.cps.EnvActionImpl"
+    },
+    {
+      "_class": "hudson.tasks.junit.TestResultAction",
+      "failCount": 0,
+      "skipCount": 0,
+      "totalCount": 18,
+      "urlName": "testReport"
+    },
+    {},
+    {},
+    {},
+    {
+      "_class": "org.jenkinsci.plugins.displayurlapi.actions.RunDisplayAction"
+    },
+    {
+      "_class": "org.jenkinsci.plugins.pipeline.modeldefinition.actions.RestartDeclarativePipelineAction"
+    },
+    {},
+    {
+      "_class": "org.jenkinsci.plugins.workflow.job.views.FlowGraphAction"
+    },
+    {},
+    {}
+  ],
+  "artifacts": [
+    {
+      "displayPath": null,
+      "fileName": "build-image-inspect.json",
+      "relativePath": "artifacts/build-image-inspect.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "build-manifest.json",
+      "relativePath": "artifacts/build-manifest.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "access-decision.json",
+      "relativePath": "artifacts/deploy/access-decision.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "compose-state.json",
+      "relativePath": "artifacts/deploy/compose-state.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "dashboard.html",
+      "relativePath": "artifacts/deploy/dashboard.html"
+    },
+    {
+      "displayPath": null,
+      "fileName": "health.json",
+      "relativePath": "artifacts/deploy/health.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "metrics.txt",
+      "relativePath": "artifacts/deploy/metrics.txt"
+    },
+    {
+      "displayPath": null,
+      "fileName": "tag-registration.json",
+      "relativePath": "artifacts/deploy/tag-registration.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "alerts-after-recovery.json",
+      "relativePath": "artifacts/monitoring/alerts-after-recovery.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "alerts-during-incident.json",
+      "relativePath": "artifacts/monitoring/alerts-during-incident.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "grafana-dashboard.json",
+      "relativePath": "artifacts/monitoring/grafana-dashboard.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "local-alert-receiver.log",
+      "relativePath": "artifacts/monitoring/local-alert-receiver.log"
+    },
+    {
+      "displayPath": null,
+      "fileName": "rules-before-incident.json",
+      "relativePath": "artifacts/monitoring/rules-before-incident.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "targets-after-recovery.json",
+      "relativePath": "artifacts/monitoring/targets-after-recovery.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "targets-before-incident.json",
+      "relativePath": "artifacts/monitoring/targets-before-incident.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "coverage.opencover.xml",
+      "relativePath": "artifacts/quality/01c279c6-b1f8-4855-b277-b7a5a5277327/coverage.opencover.xml"
+    },
+    {
+      "displayPath": null,
+      "fileName": "access-decision.json",
+      "relativePath": "artifacts/release/access-decision.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "compose-state.json",
+      "relativePath": "artifacts/release/compose-state.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "dashboard.html",
+      "relativePath": "artifacts/release/dashboard.html"
+    },
+    {
+      "displayPath": null,
+      "fileName": "health.json",
+      "relativePath": "artifacts/release/health.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "metrics.txt",
+      "relativePath": "artifacts/release/metrics.txt"
+    },
+    {
+      "displayPath": null,
+      "fileName": "release-image-inspect.json",
+      "relativePath": "artifacts/release/release-image-inspect.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "tag-registration.json",
+      "relativePath": "artifacts/release/tag-registration.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "dotnet-vulnerabilities.json",
+      "relativePath": "artifacts/security/dotnet-vulnerabilities.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "trivy-filesystem.json",
+      "relativePath": "artifacts/security/trivy-filesystem.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "trivy-image.json",
+      "relativePath": "artifacts/security/trivy-image.json"
+    },
+    {
+      "displayPath": null,
+      "fileName": "coverage.cobertura.xml",
+      "relativePath": "artifacts/test-results/7a7a2428-6f54-49af-a92f-b96ae055b0d8/coverage.cobertura.xml"
+    },
+    {
+      "displayPath": null,
+      "fileName": "RfidOps.Tests-test-result.xml",
+      "relativePath": "artifacts/test-results/RfidOps.Tests-test-result.xml"
+    }
+  ],
+  "building": false,
+  "description": null,
+  "displayName": "#14",
+  "duration": 195162,
+  "estimatedDuration": 384927,
+  "executor": null,
+  "fullDisplayName": "rfid-operations-console #14",
+  "id": "14",
+  "keepLog": false,
+  "number": 14,
+  "queueId": 5,
+  "result": "SUCCESS",
+  "timestamp": 1789078114164,
+  "url": "http://localhost:28082/job/rfid-operations-console/14/",
+  "changeSets": [
+    {
+      "_class": "hudson.plugins.git.GitChangeSetList",
+      "items": [
+        {
+          "_class": "hudson.plugins.git.GitChangeSet",
+          "affectedPaths": [
+            "scripts/ci/smoke.sh"
+          ],
+          "commitId": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+          "timestamp": 1789078089000,
+          "author": {
+            "absoluteUrl": "http://localhost:28082/user/mcfeeters.stefan",
+            "fullName": "mcfeeters.stefan"
+          },
+          "authorEmail": "mcfeeters.stefan@gmail.com",
+          "comment": "Verify retained console elements in deployment smoke checks\n",
+          "date": "2026-09-11 08:08:09 +1000",
+          "id": "a1152b51f98989d0e4052b4e3f677a9c561cb47e",
+          "msg": "Verify retained console elements in deployment smoke checks",
+          "paths": [
+            {
+              "editType": "edit",
+              "file": "scripts/ci/smoke.sh"
+            }
+          ]
+        }
+      ],
+      "kind": "git"
+    }
+  ],
+  "culprits": [
+    {
+      "absoluteUrl": "http://localhost:28082/user/mcfeeters.stefan",
+      "fullName": "mcfeeters.stefan"
+    }
+  ],
+  "inProgress": false,
+  "nextBuild": null,
+  "previousBuild": {
+    "number": 13,
+    "url": "http://localhost:28082/job/rfid-operations-console/13/"
+  }
+}

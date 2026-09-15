@@ -1,0 +1,16 @@
+# HELP rfid_ops_up Whether the API and local store are reachable.
+# TYPE rfid_ops_up gauge
+rfid_ops_up 1
+# HELP rfid_ops_registered_tags Current number of synthetic tag registrations.
+# TYPE rfid_ops_registered_tags gauge
+rfid_ops_registered_tags 4
+# HELP rfid_ops_access_events_total Total synthetic access events processed.
+# TYPE rfid_ops_access_events_total counter
+rfid_ops_access_events_total 4
+# HELP rfid_ops_access_decisions_total Synthetic decisions by outcome.
+# TYPE rfid_ops_access_decisions_total counter
+rfid_ops_access_decisions_total{outcome="granted"} 4
+rfid_ops_access_decisions_total{outcome="denied"} 0
+# HELP rfid_ops_outbox_pending Current events awaiting downstream acknowledgement.
+# TYPE rfid_ops_outbox_pending gauge
+rfid_ops_outbox_pending 4

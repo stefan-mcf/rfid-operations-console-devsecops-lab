@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RfidOps.Api/RfidOps.Api.csproj" />
+    <Project Path="src/RfidOps.Core/RfidOps.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RfidOps.Tests/RfidOps.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,135 @@
+Listening on ports 8080 for http, and 8443 for https.
+{
+    "path": "/alert",
+    "headers": {
+        "host": "alert-receiver:8080",
+        "user-agent": "Alertmanager/0.28.1",
+        "content-length": "1220",
+        "content-type": "application/json"
+    },
+    "method": "POST",
+    "body": "{\"receiver\":\"local-evidence-sink\",\"status\":\"firing\",\"alerts\":[{\"status\":\"firing\",\"labels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\",\"instance\":\"host.docker.internal:28080\",\"job\":\"rfid-operations-console\",\"severity\":\"critical\"},\"annotations\":{\"description\":\"The production-like metrics endpoint has been unreachable for 15 seconds.\",\"summary\":\"RFID Operations Console is unreachable\"},\"startsAt\":\"2026-09-10T22:11:34.936Z\",\"endsAt\":\"0001-01-01T00:00:00Z\",\"generatorURL\":\"http://e6f439d153b5:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0\\u0026g0.tab=1\",\"fingerprint\":\"af193e0bf014fc73\"}],\"groupLabels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\"},\"commonLabels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\",\"instance\":\"host.docker.internal:28080\",\"job\":\"rfid-operations-console\",\"severity\":\"critical\"},\"commonAnnotations\":{\"description\":\"The production-like metrics endpoint has been unreachable for 15 seconds.\",\"summary\":\"RFID Operations Console is unreachable\"},\"externalURL\":\"http://5ec56f8aa3bf:9093\",\"version\":\"4\",\"groupKey\":\"{}:{alertname=\\\"RfidOpsInstanceDown\\\", environment=\\\"production-like\\\"}\",\"truncatedAlerts\":0}\n",
+    "fresh": false,
+    "hostname": "alert-receiver",
+    "ip": "::ffff:172.23.0.3",
+    "ips": [],
+    "protocol": "http",
+    "query": {},
+    "subdomains": [],
+    "xhr": false,
+    "os": {
+        "hostname": "c79eb1c90317"
+    },
+    "connection": {},
+    "json": {
+        "receiver": "local-evidence-sink",
+        "status": "firing",
+        "alerts": [
+            {
+                "status": "firing",
+                "labels": {
+                    "alertname": "RfidOpsInstanceDown",
+                    "environment": "production-like",
+                    "instance": "host.docker.internal:28080",
+                    "job": "rfid-operations-console",
+                    "severity": "critical"
+                },
+                "annotations": {
+                    "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+                    "summary": "RFID Operations Console is unreachable"
+                },
+                "startsAt": "2026-09-10T22:11:34.936Z",
+                "endsAt": "0001-01-01T00:00:00Z",
+                "generatorURL": "http://e6f439d153b5:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0&g0.tab=1",
+                "fingerprint": "af193e0bf014fc73"
+            }
+        ],
+        "groupLabels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like"
+        },
+        "commonLabels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like",
+            "instance": "host.docker.internal:28080",
+            "job": "rfid-operations-console",
+            "severity": "critical"
+        },
+        "commonAnnotations": {
+            "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+            "summary": "RFID Operations Console is unreachable"
+        },
+        "externalURL": "http://5ec56f8aa3bf:9093",
+        "version": "4",
+        "groupKey": "{}:{alertname=\"RfidOpsInstanceDown\", environment=\"production-like\"}",
+        "truncatedAlerts": 0
+    }
+}
+::ffff:172.23.0.3 - - [10/Sep/2026:22:11:35 +0000] "POST /alert HTTP/1.1" 200 3367 "-" "Alertmanager/0.28.1"
+{
+    "path": "/alert",
+    "headers": {
+        "host": "alert-receiver:8080",
+        "user-agent": "Alertmanager/0.28.1",
+        "content-length": "1228",
+        "content-type": "application/json"
+    },
+    "method": "POST",
+    "body": "{\"receiver\":\"local-evidence-sink\",\"status\":\"resolved\",\"alerts\":[{\"status\":\"resolved\",\"labels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\",\"instance\":\"host.docker.internal:28080\",\"job\":\"rfid-operations-console\",\"severity\":\"critical\"},\"annotations\":{\"description\":\"The production-like metrics endpoint has been unreachable for 15 seconds.\",\"summary\":\"RFID Operations Console is unreachable\"},\"startsAt\":\"2026-09-10T22:11:34.936Z\",\"endsAt\":\"2026-09-10T22:11:44.936Z\",\"generatorURL\":\"http://e6f439d153b5:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0\\u0026g0.tab=1\",\"fingerprint\":\"af193e0bf014fc73\"}],\"groupLabels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\"},\"commonLabels\":{\"alertname\":\"RfidOpsInstanceDown\",\"environment\":\"production-like\",\"instance\":\"host.docker.internal:28080\",\"job\":\"rfid-operations-console\",\"severity\":\"critical\"},\"commonAnnotations\":{\"description\":\"The production-like metrics endpoint has been unreachable for 15 seconds.\",\"summary\":\"RFID Operations Console is unreachable\"},\"externalURL\":\"http://5ec56f8aa3bf:9093\",\"version\":\"4\",\"groupKey\":\"{}:{alertname=\\\"RfidOpsInstanceDown\\\", environment=\\\"production-like\\\"}\",\"truncatedAlerts\":0}\n",
+    "fresh": false,
+    "hostname": "alert-receiver",
+    "ip": "::ffff:172.23.0.3",
+    "ips": [],
+    "protocol": "http",
+    "query": {},
+    "subdomains": [],
+    "xhr": false,
+    "os": {
+        "hostname": "c79eb1c90317"
+    },
+    "connection": {},
+    "json": {
+        "receiver": "local-evidence-sink",
+        "status": "resolved",
+        "alerts": [
+            {
+                "status": "resolved",
+                "labels": {
+                    "alertname": "RfidOpsInstanceDown",
+                    "environment": "production-like",
+                    "instance": "host.docker.internal:28080",
+                    "job": "rfid-operations-console",
+                    "severity": "critical"
+                },
+                "annotations": {
+                    "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+                    "summary": "RFID Operations Console is unreachable"
+                },
+                "startsAt": "2026-09-10T22:11:34.936Z",
+                "endsAt": "2026-09-10T22:11:44.936Z",
+                "generatorURL": "http://e6f439d153b5:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0&g0.tab=1",
+                "fingerprint": "af193e0bf014fc73"
+            }
+        ],
+        "groupLabels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like"
+        },
+        "commonLabels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like",
+            "instance": "host.docker.internal:28080",
+            "job": "rfid-operations-console",
+            "severity": "critical"
+        },
+        "commonAnnotations": {
+            "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+            "summary": "RFID Operations Console is unreachable"
+        },
+        "externalURL": "http://5ec56f8aa3bf:9093",
+        "version": "4",
+        "groupKey": "{}:{alertname=\"RfidOpsInstanceDown\", environment=\"production-like\"}",
+        "truncatedAlerts": 0
+    }
+}
+::ffff:172.23.0.3 - - [10/Sep/2026:22:11:45 +0000] "POST /alert HTTP/1.1" 200 3383 "-" "Alertmanager/0.28.1"
