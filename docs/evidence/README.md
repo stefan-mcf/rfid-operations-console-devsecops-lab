@@ -18,4 +18,4 @@ The receiver log archived by Jenkins contains startup messages only. The separat
 
 Browser files are excluded from SonarQube analysis and coverage. One minor Dockerfile issue remains. Deployment and alerts ran locally with simulated tag events; rollback was not exercised.
 
-The [source record](../PROVENANCE.md) explains how these results relate to the published source files. [Watch the demonstration (7:20)](https://drive.google.com/file/d/1IiOHtabuf0zDHN0I_kxpE-9BG_8kJgIL/view?usp=drivesdk).
+[Watch the demonstration (7:20)](https://drive.google.com/file/d/1IiOHtabuf0zDHN0I_kxpE-9BG_8kJgIL/view?usp=drivesdk).

@@ -22,7 +22,7 @@ Jenkins build 14 completed in 3 minutes 15 seconds on 11 September 2026. It buil
 | Release | Promotes the same image to the production-like environment | Promotion and smoke tests passed |
 | Monitoring | Stops the released app, checks the outage alert, then restarts it | Local firing and resolved alerts received; target recovered |
 
-The [build results](docs/evidence/README.md) include logs, test reports, scan output and screenshots. This repository is a publication snapshot; the [source record](docs/PROVENANCE.md) connects its files to the revision used by build 14.
+The [build results](docs/evidence/README.md) include logs, test reports, scan output and screenshots.
 
 ## Run locally
 

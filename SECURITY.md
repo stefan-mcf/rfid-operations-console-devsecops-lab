@@ -13,6 +13,6 @@ Do not open a public issue containing credentials or client information. Report 
 - Never commit `.env`, customer identifiers, production endpoints or exported provider configuration.
 - Rotate a key immediately if it appears in source, logs, screenshots or evidence.
 
-## Scan handling
+## Security checks
 
-The Security stage runs NuGet audit and Trivy filesystem and image scans. Trivy blocks high and critical findings. Scan reports are stored as pipeline artifacts; the [findings record](docs/evidence/security-findings.md) describes the issues addressed during development.
+The Security stage runs NuGet audit and Trivy filesystem and image scans. Trivy blocks high and critical findings. Jenkins archives the reports with each build. See the [security findings](docs/evidence/security-findings.md) for the issues found and fixed.

@@ -12,7 +12,7 @@ From the repository root:
 cp infra/jenkins/jenkins.env.example infra/jenkins/.env.jenkins
 ```
 
-Set the administrator password, reader and administrator keys, Grafana password and GitHub read token in the copied file. The checked-in Jenkins configuration retains a GitHub credential; use a token that can read this repository. Do not commit the environment file.
+Set the administrator password, reader and administrator keys, Grafana password and GitHub read token in the copied file. Jenkins uses the token to clone the repository. Do not commit the environment file.
 
 Start SonarQube first so you can create its project and token:
 

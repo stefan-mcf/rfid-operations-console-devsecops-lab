@@ -1,31 +1,22 @@
 # Security findings
 
-Two issues were addressed during development. Jenkins build 14 repeated the NuGet and Trivy checks; [scan output](build-14/artifacts/security/) is retained with the build. Trivy results cover the configured high and critical severities.
+Two issues were fixed during development. Jenkins build 14 repeated the NuGet and Trivy checks. The [scan reports](build-14/artifacts/security/) cover high and critical Trivy findings.
 
-## SEC-001 - Vulnerable transitive SQLite native library
+## SQLite native library
 
-- **Detected by:** `dotnet restore RfidOperationsConsole.slnx` with NuGet audit and warnings treated as errors.
-- **First observed:** 13 August 2026.
-- **Dependency:** `SQLitePCLRaw.lib.e_sqlite3` 2.1.11, introduced transitively by `Microsoft.Data.Sqlite` 10.0.5.
-- **Advisory:** `GHSA-2m69-gcr7-jv3q` / `CVE-2025-6965`.
-- **Severity:** High, CVSS 7.2 in the reviewed GitHub advisory.
-- **Issue:** SQLite versions before 3.50.2 may allow aggregate terms to exceed available columns and cause memory corruption.
-- **Treatment:** The native library is explicitly pinned to `SQLitePCLRaw.lib.e_sqlite3` 3.53.3, whose package version identifies SQLite 3.53.3. No warning suppression or false-positive exclusion was added.
-- **Local verification:** Clean restore/build/test and final NuGet/Trivy scans succeeded with no remaining high or critical findings.
-- **Pipeline verification:** Jenkins build #14 completed the filesystem and image scans. Both Trivy JSON reports contain zero vulnerabilities, misconfigurations, or secrets in the configured high/critical result sets.
+NuGet audit stopped `dotnet restore RfidOperationsConsole.slnx` on 13 August 2026 because audit warnings are treated as errors. `Microsoft.Data.Sqlite` 10.0.5 brought in `SQLitePCLRaw.lib.e_sqlite3` 2.1.11 as a transitive dependency.
+
+The advisory, `GHSA-2m69-gcr7-jv3q` / `CVE-2025-6965`, was rated High with a CVSS score of 7.2. SQLite versions before 3.50.2 may allow aggregate terms to exceed available columns and cause memory corruption.
+
+The project pins `SQLitePCLRaw.lib.e_sqlite3` to 3.53.3, which contains SQLite 3.53.3. No warning suppression or false-positive exclusion was added. Restore, build and tests then passed, and the final local scans found no high or critical issues. Build 14's Trivy filesystem and image reports also contain no vulnerabilities, misconfigurations or secrets in those severity levels.
 
 Sources:
 
 - <https://github.com/advisories/GHSA-2m69-gcr7-jv3q>
 - <https://www.nuget.org/packages/SQLitePCLRaw.lib.e_sqlite3/3.53.3>
 
-## SEC-002 - Monitoring images defaulted to root
+## Monitoring container users
 
-- **Detected by:** Trivy misconfiguration scan of the repository filesystem.
-- **First observed:** 13 August 2026.
-- **Location:** `monitoring/Dockerfile`.
-- **Severity:** High (`DS002`).
-- **Issue:** The initial Prometheus, Alertmanager and Grafana stages did not explicitly declare non-root runtime users.
-- **Treatment:** The runtime stages declare non-root users (`nobody` for Prometheus/Alertmanager and UID `472` for Grafana).
-- **Local verification:** The final Trivy filesystem scan reported no remaining high or critical findings, and all three monitoring containers passed their health checks.
-- **Pipeline verification:** Jenkins build #14 completed the filesystem scan with zero remaining vulnerabilities, misconfigurations, or secrets in the configured high/critical result sets.
+Trivy reported High-severity `DS002` findings in `monitoring/Dockerfile` on 13 August 2026. The Prometheus, Alertmanager and Grafana stages lacked explicit non-root runtime users.
+
+The stages now declare `nobody` for Prometheus and Alertmanager, and UID `472` for Grafana. All three containers passed their health checks after the change. The final local scan and build 14's filesystem scan reported no remaining high or critical findings.

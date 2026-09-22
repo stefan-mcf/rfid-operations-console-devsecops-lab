@@ -10,4 +10,4 @@ The [build manifest](artifacts/build-manifest.json) records the image ID. [Jenki
 
 The archived receiver log was collected before delivery appeared and contains startup messages only. [local-alert-receiver-post-run.log](platform/local-alert-receiver-post-run.log) contains the later firing and resolved deliveries. [local-alert-delivery-readback.json](platform/local-alert-delivery-readback.json) records its checksum and matches the alert's `startsAt` value to the incident.
 
-These logs and screenshots are unchanged from the recorded run. The [source record](../../PROVENANCE.md) maps the published application and pipeline files to its original source revision.
+The application and pipeline code are unchanged from this build. [File checksums](../../build-14-source.json) are available for comparison.
