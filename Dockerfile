@@ -23,7 +23,11 @@ LABEL org.opencontainers.image.title="RFID Operations Console DevSecOps Lab" \
       org.opencontainers.image.description="Client-neutral RFID access-decision simulator"
 
 WORKDIR /app
-RUN mkdir -p /app/data && chown -R app:app /app
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends --only-upgrade \
+        libssl3t64=3.0.13-0ubuntu3.16 openssl=3.0.13-0ubuntu3.16 \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /app/data && chown -R app:app /app
 COPY --from=build --chown=app:app /app/publish .
 
 ENV ASPNETCORE_URLS=http://+:8080 \
