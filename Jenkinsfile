@@ -79,7 +79,11 @@ pipeline {
                 RFID_OPS_ADMIN_KEY = credentials('rfid-ops-admin-key')
             }
             steps {
-                sh 'scripts/ci/release.sh'
+                sh 'scripts/ci/rollback-drill.sh'
+                withCredentials([usernamePassword(credentialsId: 'github-coursework-token',
+                    usernameVariable: 'GIT_RELEASE_USER', passwordVariable: 'GIT_RELEASE_TOKEN')]) {
+                    sh 'scripts/ci/release.sh'
+                }
             }
         }
 

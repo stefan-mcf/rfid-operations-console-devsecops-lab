@@ -12,7 +12,7 @@ From the repository root:
 cp infra/jenkins/jenkins.env.example infra/jenkins/.env.jenkins
 ```
 
-Set the administrator password, reader and administrator keys, Grafana password and GitHub read token in the copied file. Jenkins uses the token to clone the repository. Do not commit the environment file.
+Set the administrator password, reader and administrator keys, Grafana password and GitHub token in the copied file. Jenkins uses the token to clone this repository and push release tags. Use a token restricted to this repository with Contents read/write access. Do not commit the environment file.
 
 Start SonarQube first so you can create its project and token:
 
@@ -52,12 +52,14 @@ Sign in to Jenkins with the configured administrator account and open `rfid-oper
 
 | ID | Use |
 | --- | --- |
-| `github-coursework-token` | Repository checkout |
+| `github-coursework-token` | Repository checkout and release tag publication |
 | `rfid-ops-reader-key` | Reader-event smoke tests |
 | `rfid-ops-admin-key` | Tag registration |
 | `sonar-token` | SonarQube analysis |
 | `grafana-admin-password` | Grafana administration |
 
 Select **Build Now**. Jenkins builds the image, tests it, runs quality and security checks, deploys to staging, promotes the same image and tests monitoring. A failed gate stops later stages. Test reports and stage outputs are archived with the build.
+
+The Release stage runs a controlled rollback drill when a previous local release exists. It deploys the candidate, stops that container to make its health check fail, and verifies automatic restoration of the previous image and protected routes. It then promotes the candidate normally and pushes an annotated `v<version>` Git tag after successful smoke checks. Existing tags cannot be moved to another commit. The first run establishes the initial release and records the drill as skipped.
 
 The monitoring stage deliberately stops and restarts the released application. Alertmanager sends firing and resolved alerts to a local receiver. No external notification service is configured. Jenkins removes the staging environment after each run; the released application and monitoring services remain available.

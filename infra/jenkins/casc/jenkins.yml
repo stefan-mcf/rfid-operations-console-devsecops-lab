@@ -18,7 +18,7 @@ credentials:
           - usernamePassword:
               scope: GLOBAL
               id: github-coursework-token
-              description: Private coursework repository read credential
+              description: Coursework repository checkout and release tag credential
               username: "${GITHUB_USERNAME}"
               password: "${GITHUB_TOKEN}"
           - string:
