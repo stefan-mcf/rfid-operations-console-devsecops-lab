@@ -1,0 +1,80 @@
+[
+    {
+        "Architecture": "arm64",
+        "Config": {
+            "Entrypoint": [
+                "dotnet",
+                "RfidOps.Api.dll"
+            ],
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "APP_UID=1654",
+                "ASPNETCORE_HTTP_PORTS=8080",
+                "DOTNET_RUNNING_IN_CONTAINER=true",
+                "DOTNET_VERSION=10.0.12",
+                "ASPNET_VERSION=10.0.12",
+                "ASPNETCORE_URLS=http://+:8080",
+                "DOTNET_EnableDiagnostics=0",
+                "RFID_OPS_DB_PATH=/app/data/rfid-ops.db"
+            ],
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Healthcheck": {
+                "Interval": 10000000000,
+                "Retries": 5,
+                "StartPeriod": 10000000000,
+                "Test": [
+                    "CMD",
+                    "dotnet",
+                    "RfidOps.Api.dll",
+                    "--health-check"
+                ],
+                "Timeout": 4000000000
+            },
+            "Labels": {
+                "org.opencontainers.image.description": "Client-neutral RFID access-decision simulator",
+                "org.opencontainers.image.revision": "341e4fae77809f1b620880d2cb24bf45be218b62",
+                "org.opencontainers.image.title": "RFID Operations Console DevSecOps Lab",
+                "org.opencontainers.image.version": "1.0.17-341e4fa"
+            },
+            "User": "app",
+            "WorkingDir": "/app"
+        },
+        "Created": "2026-10-02T07:30:31.813814254Z",
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/a26bb97a75ae56865e5512712c65655ba64912a2c699375e5028358942907a2f/diff:/var/lib/docker/overlay2/22b9e8fc0da85f06f69bbbd275a4847300688ce42916234a13fbdc2c86e97bd8/diff:/var/lib/docker/overlay2/aa9c639d306c0e9835e21b6915dbab9914d8671e1c66369b064515b80d4446e1/diff:/var/lib/docker/overlay2/ad07f573f91e10682ddf7927f2fe16dde441993bcbbfe5db240874203d36ce68/diff:/var/lib/docker/overlay2/93da18c260e27f83b3e9a99f24e42ca4e51d5495a0864844f5d867ca72d2e9ef/diff:/var/lib/docker/overlay2/f2c4b3fbe658ab6511966b6857182b60251c1255868903bbbfca02179619bab3/diff:/var/lib/docker/overlay2/70d667069f5883d0ff541b792bd849510df80042a4e15dd5e8e97f30120a4768/diff:/var/lib/docker/overlay2/ca8a5c4811c110023c18fbd9021707098fc95357dcba50809c2042e3c6d733fe/diff",
+                "MergedDir": "/var/lib/docker/overlay2/499dbef44f1169332355c4b67c1ee2154a88049fa4e94e6a8246b3ea49d875e0/merged",
+                "UpperDir": "/var/lib/docker/overlay2/499dbef44f1169332355c4b67c1ee2154a88049fa4e94e6a8246b3ea49d875e0/diff",
+                "WorkDir": "/var/lib/docker/overlay2/499dbef44f1169332355c4b67c1ee2154a88049fa4e94e6a8246b3ea49d875e0/work"
+            },
+            "Name": "overlay2"
+        },
+        "Id": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+        "Metadata": {
+            "LastTagTime": "2026-10-02T07:31:44.038506677Z"
+        },
+        "Os": "linux",
+        "Parent": "sha256:d351608319429e44e2138033f6dc2d53b29d3e166f0652f82fdf27d5f63d2bc3",
+        "RepoDigests": [],
+        "RepoTags": [
+            "rfid-ops:release-1.0.17-341e4fa"
+        ],
+        "RootFS": {
+            "Layers": [
+                "sha256:1e9178dc90058fa454a60803300219ee8c17e515be8718817ed824b96fa1207b",
+                "sha256:dc1af4b760ae2b66beb8cf15678a19b777b2c62baf68be0a9c20f705332be9c3",
+                "sha256:81599a818a0cdffabb493633a9c8b1e1ec18d5fb4f1ae869c533af0d93d27937",
+                "sha256:26310ffa551edf111b7188245d37274ad94e8c4759d05d43c429f93bbf478b1d",
+                "sha256:1ebb0efa8b691aea140708e96e3105d88a0572563a20e735ae66d7b7e1a0807f",
+                "sha256:f63cdfd5cbc62d3deb3da31bace894e2b11bcfc82a98f4eebaeb7d41e80e07a5",
+                "sha256:52864b7935edba4cc8cd963f5e06a731930060347a4decfe3f85981fee3fb2c2",
+                "sha256:0d540c68847fa25f1014c61ce1f3e1f7849363d22e6fce713b02a31385b73b92",
+                "sha256:8d9700800a8f2204d91bd62398c3d700aecf425e87831e35fedb2ed2dfbab56a"
+            ],
+            "Type": "layers"
+        },
+        "Size": 358056612
+    }
+]

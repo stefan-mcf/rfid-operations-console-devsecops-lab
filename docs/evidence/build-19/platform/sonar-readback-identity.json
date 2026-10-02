@@ -1,0 +1,10 @@
+{
+  "captured_utc": "2026-10-02T08:24:53.769377+00:00",
+  "build": 19,
+  "analysis_id": "736835aa-ba90-4b82-8856-8fbebb71e94e",
+  "ce_task_id": "daad787e-98f4-4d52-827d-dd89e411bffb",
+  "ce_status": "SUCCESS",
+  "version": "1.0.19-f896577",
+  "revision": "f896577ef3b4d88ac5d9b33bd89a48254f52b3f8",
+  "latest_analysis_unchanged_across_readback": true
+}

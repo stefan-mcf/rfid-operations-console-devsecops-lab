@@ -1,0 +1,6 @@
+{
+  "observed": "health-check-failed",
+  "target": "http://host.docker.internal:28080/health",
+  "candidate": "rfid-ops:release-1.0.19-f896577",
+  "previous": "rfid-ops:release-1.0.17-341e4fa"
+}

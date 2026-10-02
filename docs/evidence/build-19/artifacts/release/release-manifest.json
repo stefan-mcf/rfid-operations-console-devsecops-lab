@@ -1,0 +1,12 @@
+{
+  "status": "released",
+  "image": "rfid-ops:release-1.0.19-f896577",
+  "sourceImage": "rfid-ops:1.0.19-f896577",
+  "imageId": "sha256:b4739c206cecdb6934cc5d07ec1fc7e8d2865819e65eb5e3b06f010668489434",
+  "sourceImageId": "sha256:b4739c206cecdb6934cc5d07ec1fc7e8d2865819e65eb5e3b06f010668489434",
+  "previousImage": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+  "previousImageId": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+  "commit": "f896577ef3b4d88ac5d9b33bd89a48254f52b3f8",
+  "tag": "v1.0.19-f896577",
+  "target": "http://host.docker.internal:28080"
+}

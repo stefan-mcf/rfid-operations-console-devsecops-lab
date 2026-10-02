@@ -1,0 +1,89 @@
+{
+  "total": 1,
+  "p": 1,
+  "ps": 100,
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 100,
+    "total": 1
+  },
+  "effortTotal": 5,
+  "issues": [
+    {
+      "key": "f6177448-8469-4221-a305-b065a25ade1d",
+      "rule": "docker:S7031",
+      "severity": "MINOR",
+      "component": "rfid-operations-console-devsecops-lab:infra/jenkins/Dockerfile",
+      "project": "rfid-operations-console-devsecops-lab",
+      "line": 13,
+      "hash": "bb85759ef4044ea1ba57b50d46988b51",
+      "textRange": {
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 0,
+        "endOffset": 3
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "rfid-operations-console-devsecops-lab:infra/jenkins/Dockerfile",
+              "textRange": {
+                "startLine": 18,
+                "endLine": 18,
+                "startOffset": 0,
+                "endOffset": 3
+              },
+              "msg": "consecutive RUN instruction",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Merge this RUN instruction with the consecutive ones.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "mcfeeters.stefan@gmail.com",
+      "tags": [],
+      "creationDate": "2026-08-13T07:06:24+0000",
+      "updateDate": "2026-08-13T10:31:15+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    }
+  ],
+  "components": [
+    {
+      "key": "rfid-operations-console-devsecops-lab",
+      "enabled": true,
+      "qualifier": "TRK",
+      "name": "RFID Operations Console DevSecOps Lab",
+      "longName": "RFID Operations Console DevSecOps Lab"
+    },
+    {
+      "key": "rfid-operations-console-devsecops-lab:infra/jenkins/Dockerfile",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "Dockerfile",
+      "longName": "infra/jenkins/Dockerfile",
+      "path": "infra/jenkins/Dockerfile"
+    }
+  ],
+  "facets": []
+}

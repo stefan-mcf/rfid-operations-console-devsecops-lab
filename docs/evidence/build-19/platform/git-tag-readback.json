@@ -1,0 +1,11 @@
+{
+  "captured_utc": "2026-10-02T08:24:54.548282+00:00",
+  "method": "git ls-remote over HTTPS",
+  "repository": "https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git",
+  "tag": "v1.0.19-f896577",
+  "refs": {
+    "refs/tags/v1.0.19-f896577": "c0f4952562b87bde81c473cdeba23bce0a2d1534",
+    "refs/tags/v1.0.19-f896577^{}": "f896577ef3b4d88ac5d9b33bd89a48254f52b3f8"
+  },
+  "matches_archived_tag_receipt": true
+}

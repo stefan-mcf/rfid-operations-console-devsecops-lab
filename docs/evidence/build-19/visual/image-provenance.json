@@ -1,0 +1,12 @@
+{
+  "source": "jenkins-stage-view-full.png",
+  "source_sha256": "10ffcfa720a9b4bb494f7402b9ae7d228ca2fc19f413e7e77824f50f90e2471f",
+  "crop_bounds_xyxy": [
+    0,
+    0,
+    3600,
+    1030
+  ],
+  "output": "jenkins-stage-view.png",
+  "alterations": "Crop only; original source pixels retained."
+}

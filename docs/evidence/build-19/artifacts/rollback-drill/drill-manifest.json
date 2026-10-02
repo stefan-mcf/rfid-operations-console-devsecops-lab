@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "previousImage": "rfid-ops:release-1.0.17-341e4fa",
+  "previousImageId": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+  "releaseExitCode": 1,
+  "failure": "stopped candidate failed its health check",
+  "automaticRollback": "passed"
+}

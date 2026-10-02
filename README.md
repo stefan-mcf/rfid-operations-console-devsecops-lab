@@ -4,25 +4,25 @@ A .NET 10 application for registering RFID tags, processing access requests and 
 
 This project was built for SIT223 7.3HD to exercise a seven-stage Jenkins pipeline. It uses simulated reader events and separate local staging and production-like containers. No physical RFID reader is connected.
 
-[Watch the demonstration (7:20)](https://drive.google.com/file/d/1IiOHtabuf0zDHN0I_kxpE-9BG_8kJgIL/view?usp=drivesdk) · [Jenkinsfile](Jenkinsfile) · [Build results](docs/evidence/README.md)
+[Watch the demonstration](https://drive.google.com/file/d/1IiOHtabuf0zDHN0I_kxpE-9BG_8kJgIL/view?usp=drivesdk) · [Jenkinsfile](Jenkinsfile) · [Build results](docs/evidence/README.md)
 
-![RFID access decision console](docs/evidence/build-14/visual/rfid-operations-production.png)
+![RFID access decision console after build 19](docs/evidence/build-19/visual/released-application.png)
 
 ## Pipeline
 
-Jenkins build 14 completed in 3 minutes 15 seconds on 11 September 2026. It built and released image `rfid-ops:1.0.14-a1152b5` from source revision `a1152b5`.
+Jenkins build 19 completed in 4 minutes 24 seconds on 2 October 2026. It built and released image `rfid-ops:1.0.19-f896577` from source revision `f896577ef3b4d88ac5d9b33bd89a48254f52b3f8` and published annotated tag [`v1.0.19-f896577`](https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab/tree/v1.0.19-f896577).
 
-| Stage | What it does | Build 14 result |
+| Stage | What it does | Build 19 result |
 | --- | --- | --- |
 | Build | Builds a multi-stage Docker image and records its version and image ID | Version and image ID recorded |
 | Test | Runs xUnit unit, SQLite persistence and HTTP API tests | 18 passed, 0 failed, 0 skipped |
 | Code Quality | Checks formatting and runs SonarQube analysis | Gate passed; 77.0% coverage, 0.0% duplication, 0 new issues |
 | Security | Runs NuGet audit and Trivy filesystem and image scans | No findings in the configured high/critical result sets |
 | Deploy | Starts the staging container and checks health, metrics and an access request | Healthy; request granted |
-| Release | Promotes the same image to the production-like environment | Promotion and smoke tests passed |
+| Release | Exercises automatic rollback, then promotes the same image to the production-like environment | Controlled health-check failure restored the previous image; fresh promotion and smoke tests passed; Git tag verified remotely |
 | Monitoring | Stops the released app, checks the outage alert, then restarts it | Local firing and resolved alerts received; target recovered |
 
-The [build results](docs/evidence/README.md) include logs, test reports, scan output and screenshots.
+The [build results](docs/evidence/README.md) include logs, test reports, scan output, rollback and tag receipts, and screenshots. [Build 14](docs/evidence/build-14/README.md) remains available as historical evidence.
 
 ## Run locally
 
@@ -77,8 +77,8 @@ For the complete pipeline, follow the [Jenkins and SonarQube setup](infra/jenkin
 
 ## Limitations
 
-SonarQube excludes the browser files in `wwwroot` from analysis and coverage. The gate requires at least 70% coverage, no more than 3% duplication, zero new issues and zero blocker issues. One minor Dockerfile maintainability issue remains.
+SonarQube excludes the browser files in `wwwroot` from analysis and coverage. The gate requires at least 70% coverage, no more than 3% duplication, zero new issues and zero blocker issues. Build 19's new-code comparison uses version `1.0.18-f896577`, which has the same source commit. One minor Dockerfile maintainability issue remains.
 
 Trivy checks high and critical findings; a passing result does not cover every severity. The [security findings](docs/evidence/security-findings.md) explain the SQLite dependency and container-user issues addressed during development.
 
-Release rollback is implemented but was not exercised in build 14. Monitoring sends alerts to a local receiver, with no email, SMS or chat integration. The outbox supports acknowledgement, but no external delivery adapter is connected.
+Build 19 exercised automatic rollback through a controlled local health-check failure, restored the previous image by its immutable ID and passed smoke checks before releasing the candidate normally. Monitoring sends alerts to a local receiver, with no email, SMS or chat integration. The outbox supports acknowledgement, but no external delivery adapter is connected.

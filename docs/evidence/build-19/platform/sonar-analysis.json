@@ -1,0 +1,24 @@
+{
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 1,
+    "total": 10
+  },
+  "analyses": [
+    {
+      "key": "736835aa-ba90-4b82-8856-8fbebb71e94e",
+      "date": "2026-10-02T08:18:57+0000",
+      "events": [
+        {
+          "key": "88ec60a3-2181-4a64-b285-c692e989ef8f",
+          "category": "VERSION",
+          "name": "1.0.19-f896577"
+        }
+      ],
+      "projectVersion": "1.0.19-f896577",
+      "manualNewCodePeriodBaseline": false,
+      "revision": "f896577ef3b4d88ac5d9b33bd89a48254f52b3f8",
+      "detectedCI": "Jenkins"
+    }
+  ]
+}

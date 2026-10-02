@@ -1,0 +1,23 @@
+{
+  "task": {
+    "id": "daad787e-98f4-4d52-827d-dd89e411bffb",
+    "type": "REPORT",
+    "componentId": "26027dfb-c97b-4555-9e96-4b59fa9ad632",
+    "componentKey": "rfid-operations-console-devsecops-lab",
+    "componentName": "RFID Operations Console DevSecOps Lab",
+    "componentQualifier": "TRK",
+    "analysisId": "736835aa-ba90-4b82-8856-8fbebb71e94e",
+    "status": "SUCCESS",
+    "submittedAt": "2026-10-02T08:19:02+0000",
+    "submitterLogin": "admin",
+    "startedAt": "2026-10-02T08:19:04+0000",
+    "executedAt": "2026-10-02T08:19:07+0000",
+    "executionTimeMs": 2883,
+    "hasScannerContext": true,
+    "warningCount": 1,
+    "warnings": [
+      "Your code is analyzed as compatible with all Python 3 versions by default. You can get a more precise analysis by setting the exact Python version in your configuration via the parameter \"sonar.python.version\""
+    ],
+    "infoMessages": []
+  }
+}

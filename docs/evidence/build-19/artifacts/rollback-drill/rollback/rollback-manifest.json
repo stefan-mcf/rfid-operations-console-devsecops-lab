@@ -1,0 +1,11 @@
+{
+  "status": "restored",
+  "fromImage": "rfid-ops:release-1.0.19-f896577",
+  "image": "rfid-ops:release-1.0.17-341e4fa",
+  "runtimeImage": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+  "imageId": "sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c",
+  "commit": "341e4fae77809f1b620880d2cb24bf45be218b62",
+  "version": "1.0.17-341e4fa",
+  "target": "http://host.docker.internal:28080",
+  "smoke": "passed"
+}

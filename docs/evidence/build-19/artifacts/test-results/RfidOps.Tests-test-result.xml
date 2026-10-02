@@ -1,0 +1,31 @@
+<testsuites>
+  <testsuite name="RfidOps.Tests.dll" tests="18" skipped="0" failures="0" errors="0" time="0.6052647999999999" timestamp="2026-10-02T08:18:28" hostname="eb9575bdb308" id="0" package="RfidOps.Tests.dll">
+    <properties />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierNormalizesValidValues(input: &quot;ABC123&quot;, expected: &quot;ABC123&quot;)" time="0.0211487" />
+    <testcase classname="RfidOps.Tests.AccessDecisionServiceTests" name="AccessDecisionServiceTests.InactiveRegistrationIsDenied" time="0.0311431" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierNormalizesValidValues(input: &quot; demo-tag-001 &quot;, expected: &quot;DEMO-TAG-001&quot;)" time="0.0005410" />
+    <testcase classname="RfidOps.Tests.AccessDecisionServiceTests" name="AccessDecisionServiceTests.ActiveRegistrationIsGranted" time="0.0010253" />
+    <testcase classname="RfidOps.Tests.AccessDecisionServiceTests" name="AccessDecisionServiceTests.UnknownTagIsDenied" time="0.0001370" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierRejectsInvalidValues(input: &quot;TAG WITH SPACES&quot;)" time="0.0077667" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierRejectsInvalidValues(input: &quot;&quot;)" time="0.0004502" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierRejectsInvalidValues(input: &quot;ab&quot;)" time="0.0000430" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.TagIdentifierRejectsInvalidValues(input: &quot;-INVALID-&quot;)" time="0.0000193" />
+    <testcase classname="RfidOps.Tests.IdentifierTests" name="IdentifierTests.ReaderIdentifierNormalizesValidValues" time="0.0001711" />
+    <testcase classname="RfidOps.Tests.SqliteOperationsStoreTests" name="SqliteOperationsStoreTests.DecisionAndOutboxAreCommittedTogether" time="0.1422194" />
+    <testcase classname="RfidOps.Tests.SqliteOperationsStoreTests" name="SqliteOperationsStoreTests.RegistrationCanBeUpsertedAndRead" time="0.0223685" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.MutationWithoutKeyIsRejected" time="0.3335191" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.ActiveTagEventIsGranted" time="0.0276715" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.UnknownTagEventIsDeniedAndPersisted" time="0.0059071" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.FaviconRequestDoesNotPolluteBrowserConsole" time="0.0021222" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.HealthReportsReachableDatabase" time="0.0053662" />
+    <testcase classname="RfidOps.Tests.ApiIntegrationTests" name="ApiIntegrationTests.MetricsExposeDecisionAndOutboxSeries" time="0.0036454" />
+    <system-out>
+Test Framework Informational Messages:
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.11)
+[xUnit.net 00:00:00.16]   Discovering: RfidOps.Tests
+[xUnit.net 00:00:00.40]   Discovered:  RfidOps.Tests
+[xUnit.net 00:00:00.64]   Starting:    RfidOps.Tests
+[xUnit.net 00:00:01.10]   Finished:    RfidOps.Tests (ID = 'e267c1c686b91803ae8f2581192a518eae86d7afb4d3413f21060058dc5affcf')
+</system-out>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "parameters": "--vulnerable --include-transitive",
+  "sources": [
+    "https://api.nuget.org/v3/index.json"
+  ],
+  "projects": [
+    {
+      "path": "/var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Api/RfidOps.Api.csproj"
+    },
+    {
+      "path": "/var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Core/RfidOps.Core.csproj"
+    },
+    {
+      "path": "/var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests/RfidOps.Tests.csproj"
+    }
+  ]
+}

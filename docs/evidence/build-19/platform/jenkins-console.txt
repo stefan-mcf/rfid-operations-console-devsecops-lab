@@ -1,0 +1,802 @@
+Started by user local-admin
+Obtained Jenkinsfile from git https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/jobs/rfid-operations-console/workspace
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 45 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github-coursework-token
+ > git rev-parse --resolve-git-dir /var/jenkins_home/jobs/rfid-operations-console/workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git # timeout=10
+Fetching upstream changes from https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials Private coursework repository read credential
+ > git fetch --tags --force --progress -- https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision f896577ef3b4d88ac5d9b33bd89a48254f52b3f8 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f f896577ef3b4d88ac5d9b33bd89a48254f52b3f8 # timeout=10
+Commit message: "Restore prior releases by verified immutable image ID"
+ > git rev-list --no-walk f896577ef3b4d88ac5d9b33bd89a48254f52b3f8 # timeout=10
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] dir
+Running in /var/jenkins_home/jobs/rfid-operations-console/workspace/artifacts
+[Pipeline] {
+[Pipeline] deleteDir
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] sh
++ mkdir -p artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ scripts/ci/build.sh
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.635MB
+Step 1/21 : FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+10.0: Pulling from dotnet/sdk
+90812e242c93: Already exists
+efc7f95d6804: Already exists
+3bfe6fb4456f: Already exists
+eec528d180c9: Already exists
+597dc22e14a9: Already exists
+a8f33b0ef9c0: Already exists
+d9695a9f901f: Pulling fs layer
+2377070b97ae: Pulling fs layer
+69b8c8059ccf: Pulling fs layer
+9694565b221e: Pulling fs layer
+7ecd096db007: Pulling fs layer
+9694565b221e: Waiting
+7ecd096db007: Waiting
+69b8c8059ccf: Download complete
+d9695a9f901f: Verifying Checksum
+d9695a9f901f: Download complete
+9694565b221e: Verifying Checksum
+9694565b221e: Download complete
+d9695a9f901f: Pull complete
+7ecd096db007: Verifying Checksum
+7ecd096db007: Download complete
+2377070b97ae: Verifying Checksum
+2377070b97ae: Download complete
+2377070b97ae: Pull complete
+69b8c8059ccf: Pull complete
+9694565b221e: Pull complete
+7ecd096db007: Pull complete
+Digest: sha256:35d40304542c8689331f8cab17c65926cdf48fe711e289321d71924b230a7d29
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/sdk:10.0
+ ---> 1de4a8d68534
+Step 2/21 : WORKDIR /source
+ ---> Running in f565c89ec424
+ ---> Removed intermediate container f565c89ec424
+ ---> d0e91684c1aa
+Step 3/21 : COPY global.json Directory.Build.props RfidOperationsConsole.slnx ./
+ ---> ec58665583d3
+Step 4/21 : COPY src/RfidOps.Core/RfidOps.Core.csproj src/RfidOps.Core/
+ ---> e03007d2bd07
+Step 5/21 : COPY src/RfidOps.Api/RfidOps.Api.csproj src/RfidOps.Api/
+ ---> c998e69245ce
+Step 6/21 : COPY tests/RfidOps.Tests/RfidOps.Tests.csproj tests/RfidOps.Tests/
+ ---> cafdbaf49d34
+Step 7/21 : RUN dotnet restore RfidOperationsConsole.slnx
+ ---> Running in 78227114bd74
+  Determining projects to restore...
+  Restored /source/src/RfidOps.Core/RfidOps.Core.csproj (in 93 ms).
+  Restored /source/src/RfidOps.Api/RfidOps.Api.csproj (in 16.05 sec).
+  Restored /source/tests/RfidOps.Tests/RfidOps.Tests.csproj (in 20.72 sec).
+ ---> Removed intermediate container 78227114bd74
+ ---> b91f45473520
+Step 8/21 : COPY src/ src/
+ ---> 463074c0ec08
+Step 9/21 : RUN dotnet publish src/RfidOps.Api/RfidOps.Api.csproj     --configuration Release     --no-restore     --output /app/publish     /p:UseAppHost=false
+ ---> Running in 6b83a1c6d876
+  RfidOps.Core -> /source/src/RfidOps.Core/bin/Release/net10.0/RfidOps.Core.dll
+  RfidOps.Api -> /source/src/RfidOps.Api/bin/Release/net10.0/RfidOps.Api.dll
+  RfidOps.Api -> /app/publish/
+ ---> Removed intermediate container 6b83a1c6d876
+ ---> 3f0b2c71e353
+Step 10/21 : FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+10.0: Pulling from dotnet/aspnet
+Digest: sha256:2d584d8147faddb0d678c5748d47953e5b8e18621ed4fb7049a91381d9d7746f
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/aspnet:10.0
+ ---> 26e825221d65
+Step 11/21 : ARG APP_VERSION=dev
+ ---> Using cache
+ ---> 50decfbfc345
+Step 12/21 : ARG VCS_REF=unknown
+ ---> Using cache
+ ---> c869f5d19b6c
+Step 13/21 : LABEL org.opencontainers.image.title="RFID Operations Console DevSecOps Lab"       org.opencontainers.image.version="${APP_VERSION}"       org.opencontainers.image.revision="${VCS_REF}"       org.opencontainers.image.description="Client-neutral RFID access-decision simulator"
+ ---> Running in 13d558e4a7ec
+ ---> Removed intermediate container 13d558e4a7ec
+ ---> a25e511ead3d
+Step 14/21 : WORKDIR /app
+ ---> Running in ac99b3f59ada
+ ---> Removed intermediate container ac99b3f59ada
+ ---> d4216be36300
+Step 15/21 : RUN apt-get update     && apt-get install --yes --no-install-recommends --only-upgrade         libssl3t64=3.0.13-0ubuntu3.16 openssl=3.0.13-0ubuntu3.16     && rm -rf /var/lib/apt/lists/*     && mkdir -p /app/data && chown -R app:app /app
+ ---> Running in b2fdc4dcd2b3
+Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1753 kB]
+Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3122 kB]
+Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [94.8 kB]
+Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2201 kB]
+Get:13 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [671 B]
+Get:16 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [2886 kB]
+Get:17 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1388 kB]
+Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [89.7 kB]
+Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1624 kB]
+Fetched 35.1 MB in 16s (2228 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages will be upgraded:
+  libssl3t64 openssl
+2 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+Need to get 2823 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libssl3t64 arm64 3.0.13-0ubuntu3.16 [1838 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 openssl arm64 3.0.13-0ubuntu3.16 [985 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 2823 kB in 5s (589 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6106 files and directories currently installed.)
+Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.16_arm64.deb ...
+Unpacking libssl3t64:arm64 (3.0.13-0ubuntu3.16) over (3.0.13-0ubuntu3.15) ...
+Setting up libssl3t64:arm64 (3.0.13-0ubuntu3.16) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6106 files and directories currently installed.)
+Preparing to unpack .../openssl_3.0.13-0ubuntu3.16_arm64.deb ...
+Unpacking openssl (3.0.13-0ubuntu3.16) over (3.0.13-0ubuntu3.15) ...
+Setting up openssl (3.0.13-0ubuntu3.16) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+ ---> Removed intermediate container b2fdc4dcd2b3
+ ---> c2f6125fa652
+Step 16/21 : COPY --from=build --chown=app:app /app/publish .
+ ---> 821306ab454e
+Step 17/21 : ENV ASPNETCORE_URLS=http://+:8080     DOTNET_EnableDiagnostics=0     RFID_OPS_DB_PATH=/app/data/rfid-ops.db
+ ---> Running in 84fb92e737b5
+ ---> Removed intermediate container 84fb92e737b5
+ ---> 2657175cc61d
+Step 18/21 : EXPOSE 8080
+ ---> Running in 3b94b6425885
+ ---> Removed intermediate container 3b94b6425885
+ ---> 763dacc01714
+Step 19/21 : USER app
+ ---> Running in d3878730294a
+ ---> Removed intermediate container d3878730294a
+ ---> 8dd77a9a85d1
+Step 20/21 : HEALTHCHECK --interval=10s --timeout=4s --start-period=10s --retries=5   CMD ["dotnet", "RfidOps.Api.dll", "--health-check"]
+ ---> Running in 354c34484b01
+ ---> Removed intermediate container 354c34484b01
+ ---> 63cd83fd09dd
+Step 21/21 : ENTRYPOINT ["dotnet", "RfidOps.Api.dll"]
+ ---> Running in 7bac2d868818
+ ---> Removed intermediate container 7bac2d868818
+ ---> b4739c206cec
+Successfully built b4739c206cec
+Successfully tagged rfid-ops:1.0.19-f896577
+Built immutable local image rfid-ops:1.0.19-f896577 (sha256:b4739c206cecdb6934cc5d07ec1fc7e8d2865819e65eb5e3b06f010668489434)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
++ scripts/ci/test.sh
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RfidOps.Core -> /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Core/bin/Release/net10.0/RfidOps.Core.dll
+  RfidOps.Api -> /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Api/bin/Release/net10.0/RfidOps.Api.dll
+  RfidOps.Tests -> /var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Tests.dll
+Test run for /var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: /var/jenkins_home/jobs/rfid-operations-console/workspace/artifacts/test-results/RfidOps.Tests-test-result.xml
+
+Passed!  - Failed:     0, Passed:    18, Skipped:     0, Total:    18, Duration: 389 ms - RfidOps.Tests.dll (net10.0)
+
+Attachments:
+  /var/jenkins_home/jobs/rfid-operations-console/workspace/artifacts/test-results/3193b6c9-f288-44a6-aece-e02fbeb68cbe/coverage.cobertura.xml
+Post stage
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Quality)
+[Pipeline] withCredentials
+Masking supported pattern matches of $SONAR_TOKEN
+[Pipeline] {
+[Pipeline] sh
++ scripts/ci/quality.sh
+Tool 'dotnet-sonarscanner' (version '11.2.1') was restored. Available commands: dotnet-sonarscanner
+
+Restore was successful.
+SonarScanner for .NET 11.2.1
+Using the .NET Core version of the Scanner for .NET
+Pre-processing started.
+Preparing working directories...
+08:18:39.273  Updating build integration targets...
+08:18:39.362  Using SonarQube v26.8.0.126808.
+08:18:39.550  Fetching analysis configuration settings...
+08:18:40.288  Provisioning analyzer assemblies for cs...
+08:18:40.289  Installing required Roslyn analyzers...
+08:18:40.289  Processing plugin: csharp version 10.31.0.145097
+08:18:40.474  Provisioning analyzer assemblies for vbnet...
+08:18:40.474  Installing required Roslyn analyzers...
+08:18:40.474  Processing plugin: vbnet version 10.31.0.145097
+08:18:40.480  Incremental PR analysis: Base branch parameter was not provided.
+08:18:40.480  Cache data is empty. A full analysis will be performed.
+08:18:40.518  Pre-processing succeeded.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  RfidOps.Core -> /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Core/bin/Release/net10.0/RfidOps.Core.dll
+  Sonar: (RfidOps.Core.csproj) Project processed successfully
+  RfidOps.Api -> /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Api/bin/Release/net10.0/RfidOps.Api.dll
+  Sonar: (RfidOps.Api.csproj) Project processed successfully
+  RfidOps.Tests -> /var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Tests.dll
+  Sonar: (RfidOps.Tests.csproj) Project processed successfully
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.15
+Test run for /var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests/bin/Release/net10.0/RfidOps.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    18, Skipped:     0, Total:    18, Duration: 442 ms - RfidOps.Tests.dll (net10.0)
+
+Attachments:
+  /var/jenkins_home/jobs/rfid-operations-console/workspace/artifacts/quality/b68007bb-8317-402b-99aa-3dc3761ad7a6/coverage.opencover.xml
+SonarScanner for .NET 11.2.1
+Using the .NET Core version of the Scanner for .NET
+Post-processing started.
+08:18:55.209  Starting with Scanner for .NET v8 the way the `sonar.projectBaseDir` property is automatically detected has changed and this has an impact on the files that are analyzed and other properties that are resolved relative to it like `sonar.exclusions` and `sonar.test.exclusions`. If you would like to customize the behavior, please set the `sonar.projectBaseDir` property to point to a directory that contains all the source code you want to analyze. The path may be relative (to the directory from which the analysis was started) or absolute.
+08:18:55.409  Using Java found in Analysis Config: /root/.sonar/cache/fa23d9d9945053e67bcc7638410eabf1e17a7672c7c95a24f70cd08b8407d36e/OpenJDK21U-jre_aarch64_linux_hotspot_21.0.11_10.tar.gz_extracted/jdk-21.0.11+10-jre/bin/java
+08:18:55.895  INFO: Starting SonarScanner Engine...
+08:18:55.895  INFO: Java 21.0.11 Eclipse Adoptium (64-bit)
+08:18:56.935  INFO: Load global settings
+08:18:57.023  INFO: Load global settings (done) | time=85ms
+08:18:57.026  INFO: Server id: 147B411E-AZ_59cNx4BXDEdykuUWR
+08:18:57.035  INFO: Loading required plugins
+08:18:57.035  INFO: Load plugins index
+08:18:57.052  INFO: Load plugins index (done) | time=17ms
+08:18:57.053  INFO: Load/download plugins
+08:18:57.096  INFO: Load/download plugins (done) | time=44ms
+08:18:57.447  INFO: Process project properties
+08:18:57.464  INFO: Process project properties (done) | time=17ms
+08:18:57.473  INFO: Project key: rfid-operations-console-devsecops-lab
+08:18:57.474  INFO: Base dir: /var/jenkins_home/jobs/rfid-operations-console/workspace
+08:18:57.474  INFO: Working dir: /var/jenkins_home/jobs/rfid-operations-console/workspace/.sonarqube/out/.sonar
+08:18:57.483  INFO: Load project settings for component key: 'rfid-operations-console-devsecops-lab'
+08:18:57.509  INFO: Load project settings for component key: 'rfid-operations-console-devsecops-lab' (done) | time=26ms
+08:18:57.534  INFO: Load quality profiles
+08:18:57.604  INFO: Load quality profiles (done) | time=70ms
+08:18:57.616  INFO: Auto-configuring with CI 'Jenkins'
+08:18:57.665  INFO: Load active rules
+08:18:58.018  INFO: Load active rules (done) | time=352ms
+08:18:58.027  INFO: Load analysis cache
+08:18:58.044  INFO: Load analysis cache (1.0 kB) | time=18ms
+08:18:58.175  INFO: Preprocessing files...
+08:18:58.261  INFO: 5 languages detected in 49 preprocessed files (done) | time=85ms
+08:18:58.261  INFO: 60 files ignored because of inclusion/exclusion patterns
+08:18:58.262  INFO: 12 files ignored because of scm ignore settings
+08:18:58.265  INFO: Loading plugins for detected languages
+08:18:58.266  INFO: Load/download plugins
+08:18:58.294  INFO: Load/download plugins (done) | time=27ms
+08:18:58.714  INFO: Executing phase 2 project builders
+08:18:58.767  INFO: Executing phase 2 project builders (done) | time=53ms
+08:18:58.775  INFO: Load project repositories
+08:18:58.871  INFO: Load project repositories (done) | time=96ms
+08:18:58.896  INFO: Indexing files...
+08:18:58.896  INFO: Project configuration:
+08:18:58.896  INFO:   Excluded sources: **/bin/**, **/obj/**, artifacts/**, docs/evidence/**, .pipeline/**, src/RfidOps.Api/wwwroot/**, artifacts/quality/**/coverage.opencover.xml
+08:18:58.896  INFO:   Excluded sources for coverage: src/RfidOps.Api/wwwroot/**
+08:18:58.898  INFO: Indexing files of module 'RfidOps.Tests'
+08:18:58.898  INFO:   Base dir: /var/jenkins_home/jobs/rfid-operations-console/workspace/tests/RfidOps.Tests
+08:18:58.899  INFO:   Test paths: test-release.py, obj/project.assets.json, obj/RfidOps.Tests.csp...
+08:18:58.899  INFO:   Excluded sources: **/bin/**, **/obj/**, artifacts/**, docs/evidence/**, .pipeline/**, src/RfidOps.Api/wwwroot/**, artifacts/quality/**/coverage.opencover.xml
+08:18:58.899  INFO:   Excluded sources for coverage: src/RfidOps.Api/wwwroot/**
+08:18:58.921  INFO: Indexing files of module 'RfidOps.Api'
+08:18:58.921  INFO:   Base dir: /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Api
+08:18:58.921  INFO:   Source paths: wwwroot/index.html, wwwroot/styles.css, wwwroot/app.js, obj/R...
+08:18:58.921  INFO:   Excluded sources: **/bin/**, **/obj/**, artifacts/**, docs/evidence/**, .pipeline/**, src/RfidOps.Api/wwwroot/**, artifacts/quality/**/coverage.opencover.xml
+08:18:58.921  INFO:   Excluded sources for coverage: src/RfidOps.Api/wwwroot/**
+08:18:58.932  INFO: Indexing files of module 'RfidOps.Core'
+08:18:58.932  INFO:   Base dir: /var/jenkins_home/jobs/rfid-operations-console/workspace/src/RfidOps.Core
+08:18:58.932  INFO:   Source paths: Domain/AccessDecision.cs, Domain/AccessDecisionService.cs, Do...
+08:18:58.932  INFO:   Excluded sources: **/bin/**, **/obj/**, artifacts/**, docs/evidence/**, .pipeline/**, src/RfidOps.Api/wwwroot/**, artifacts/quality/**/coverage.opencover.xml
+08:18:58.933  INFO:   Excluded sources for coverage: src/RfidOps.Api/wwwroot/**
+08:18:58.936  INFO: Indexing files of module 'RFID Operations Console DevSecOps Lab'
+08:18:58.936  INFO:   Base dir: /var/jenkins_home/jobs/rfid-operations-console/workspace
+08:18:58.936  INFO:   Source paths: .config/dotnet-tools.json, deploy/compose.production.yml, dep...
+08:18:58.937  INFO:   Excluded sources: **/bin/**, **/obj/**, artifacts/**, docs/evidence/**, .pipeline/**, src/RfidOps.Api/wwwroot/**, artifacts/quality/**/coverage.opencover.xml
+08:18:58.937  INFO:   Excluded sources for coverage: src/RfidOps.Api/wwwroot/**
+08:18:58.943  INFO: 49 files indexed (done) | time=47ms
+08:18:58.944  INFO: Quality profile for cs: Sonar way
+08:18:58.944  INFO: Quality profile for docker: Sonar way
+08:18:58.944  INFO: Quality profile for json: Sonar way
+08:18:58.944  INFO: Quality profile for py: Sonar way
+08:18:58.944  INFO: Quality profile for yaml: Sonar way
+08:18:58.944  INFO: ------------- Run sensors on module RfidOps.Core
+08:18:58.997  INFO: Load metrics repository
+08:18:59.027  INFO: Load metrics repository (done) | time=30ms
+08:18:59.812  INFO: Sensor IaC hadolint report Sensor [iac]
+08:18:59.812  INFO: Sensor IaC hadolint report Sensor [iac] (done) | time=1ms
+08:18:59.812  INFO: Sensor Java Config Sensor [iac]
+08:18:59.817  INFO: There are no files to be analyzed for the Java language
+08:18:59.817  INFO: Sensor Java Config Sensor [iac] (done) | time=5ms
+08:18:59.817  INFO: Sensor IaC Docker Sensor [iac]
+08:18:59.817  INFO: There are no files to be analyzed for the Docker language
+08:18:59.817  INFO: Sensor IaC Docker Sensor [iac] (done) | time=0ms
+08:18:59.817  INFO: Sensor C# Project Type Information [csharp]
+08:18:59.819  INFO: Sensor C# Project Type Information [csharp] (done) | time=1ms
+08:18:59.819  INFO: Sensor C# Analysis Log [csharp]
+08:18:59.825  INFO: Roslyn version: 5.9.0.0
+08:18:59.825  INFO: Language version: CSharp14
+08:18:59.825  INFO: Concurrent execution: enabled
+08:18:59.825  INFO: Sensor C# Analysis Log [csharp] (done) | time=6ms
+08:18:59.825  INFO: Sensor C# Method Declarations [csharp]
+08:18:59.826  INFO: Sensor C# Method Declarations [csharp] (done) | time=0ms
+08:18:59.826  INFO: Sensor C# Telemetry [csharp]
+08:18:59.827  INFO: Sensor C# Telemetry [csharp] (done) | time=1ms
+08:18:59.827  INFO: Sensor C# Telemetry Json [csharp]
+08:18:59.837  INFO: Sensor C# Telemetry Json [csharp] (done) | time=9ms
+08:18:59.838  INFO: Sensor C# Properties [csharp]
+08:18:59.838  INFO: Sensor C# Properties [csharp] (done) | time=0ms
+08:18:59.838  INFO: Sensor Python Dependency Sensor [python]
+08:18:59.843  INFO: Sensor Python Dependency Sensor [python] (done) | time=5ms
+08:18:59.845  INFO: ------------- Run sensors on module RfidOps.Api
+08:18:59.895  INFO: Sensor IaC hadolint report Sensor [iac]
+08:18:59.895  INFO: Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+08:18:59.895  INFO: Sensor Java Config Sensor [iac]
+08:18:59.897  INFO: There are no files to be analyzed for the Java language
+08:18:59.898  INFO: Sensor Java Config Sensor [iac] (done) | time=2ms
+08:18:59.898  INFO: Sensor IaC Docker Sensor [iac]
+08:18:59.898  INFO: There are no files to be analyzed for the Docker language
+08:18:59.898  INFO: Sensor IaC Docker Sensor [iac] (done) | time=0ms
+08:18:59.898  INFO: Sensor C# Project Type Information [csharp]
+08:18:59.898  INFO: Sensor C# Project Type Information [csharp] (done) | time=0ms
+08:18:59.898  INFO: Sensor C# Analysis Log [csharp]
+08:18:59.899  INFO: Roslyn version: 5.9.0.0
+08:18:59.899  INFO: Language version: CSharp14
+08:18:59.899  INFO: Concurrent execution: enabled
+08:18:59.899  INFO: Sensor C# Analysis Log [csharp] (done) | time=0ms
+08:18:59.899  INFO: Sensor C# Method Declarations [csharp]
+08:18:59.899  INFO: Sensor C# Method Declarations [csharp] (done) | time=0ms
+08:18:59.899  INFO: Sensor C# Telemetry [csharp]
+08:18:59.900  INFO: Sensor C# Telemetry [csharp] (done) | time=0ms
+08:18:59.900  INFO: Sensor C# Telemetry Json [csharp]
+08:18:59.900  INFO: Sensor C# Telemetry Json [csharp] (done) | time=0ms
+08:18:59.900  INFO: Sensor C# Properties [csharp]
+08:18:59.900  INFO: Sensor C# Properties [csharp] (done) | time=0ms
+08:18:59.900  INFO: Sensor Python Dependency Sensor [python]
+08:18:59.900  INFO: Sensor Python Dependency Sensor [python] (done) | time=0ms
+08:18:59.900  INFO: ------------- Run sensors on module RfidOps.Tests
+08:18:59.940  INFO: Sensor IaC hadolint report Sensor [iac]
+08:18:59.940  INFO: Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+08:18:59.940  INFO: Sensor Java Config Sensor [iac]
+08:18:59.943  INFO: There are no files to be analyzed for the Java language
+08:18:59.943  INFO: Sensor Java Config Sensor [iac] (done) | time=3ms
+08:18:59.943  INFO: Sensor IaC Docker Sensor [iac]
+08:18:59.943  INFO: There are no files to be analyzed for the Docker language
+08:18:59.944  INFO: Sensor IaC Docker Sensor [iac] (done) | time=0ms
+08:18:59.944  INFO: Sensor C# Project Type Information [csharp]
+08:18:59.944  INFO: Sensor C# Project Type Information [csharp] (done) | time=0ms
+08:18:59.944  INFO: Sensor C# Analysis Log [csharp]
+08:18:59.944  INFO: Roslyn version: 5.9.0.0
+08:18:59.944  INFO: Language version: CSharp14
+08:18:59.944  INFO: Concurrent execution: enabled
+08:18:59.944  INFO: Sensor C# Analysis Log [csharp] (done) | time=0ms
+08:18:59.944  INFO: Sensor C# Method Declarations [csharp]
+08:18:59.946  INFO: Sensor C# Method Declarations [csharp] (done) | time=1ms
+08:18:59.946  INFO: Sensor C# Telemetry [csharp]
+08:18:59.947  INFO: Sensor C# Telemetry [csharp] (done) | time=0ms
+08:18:59.947  INFO: Sensor C# Telemetry Json [csharp]
+08:18:59.947  INFO: Sensor C# Telemetry Json [csharp] (done) | time=0ms
+08:18:59.947  INFO: Sensor C# Properties [csharp]
+08:18:59.947  INFO: Sensor C# Properties [csharp] (done) | time=0ms
+08:18:59.947  INFO: Sensor Python Sensor [python]
+08:18:59.952  WARNING: WARN: Your code is analyzed as compatible with all Python 3 versions by default. You can get a more precise analysis by setting the exact Python version in your configuration via the parameter "sonar.python.version"
+08:18:59.952  INFO: Caching will be disabled for this analysis due to the use of the "sonar.modules" property.
+08:19:00.243  INFO: Starting global symbols computation
+08:19:00.246  INFO: 1 source file to be analyzed
+08:19:00.650  INFO: 1/1 source file has been analyzed
+08:19:00.651  INFO: Finished step global symbols computation in 407ms
+08:19:00.654  INFO: Starting rules execution
+08:19:00.658  INFO: 1 source file to be analyzed
+08:19:01.092  INFO: 1/1 source file has been analyzed
+08:19:01.092  INFO: Finished step rules execution in 436ms
+08:19:01.092  INFO: The Python analyzer was able to leverage cached data from previous analyses for 0 out of 1 files. These files were not parsed.
+08:19:01.094  INFO: Sensor Python Sensor [python] (done) | time=1146ms
+08:19:01.094  INFO: Sensor Cobertura Sensor for Python coverage [python]
+08:19:01.103  INFO: Sensor Cobertura Sensor for Python coverage [python] (done) | time=8ms
+08:19:01.103  INFO: Sensor Python Dependency Sensor [python]
+08:19:01.103  INFO: Sensor Python Dependency Sensor [python] (done) | time=0ms
+08:19:01.103  INFO: ------------- Run sensors on module RFID Operations Console DevSecOps Lab
+08:19:01.143  INFO: Sensor IaC YAML File Type Classification Sensor [iac]
+08:19:01.162  INFO: Sensor IaC YAML File Type Classification Sensor [iac] (done) | time=19ms
+08:19:01.162  INFO: Sensor IaC CloudFormation Sensor [iac]
+08:19:01.162  INFO: There are no files to be analyzed for the CloudFormation language
+08:19:01.162  INFO: Sensor IaC CloudFormation Sensor [iac] (done) | time=0ms
+08:19:01.162  INFO: Sensor IaC cfn-lint report Sensor [iac]
+08:19:01.162  INFO: Sensor IaC cfn-lint report Sensor [iac] (done) | time=0ms
+08:19:01.162  INFO: Sensor IaC Kustomization Sensor [iac]
+08:19:01.173  INFO: Sensor IaC Kustomization Sensor [iac] (done) | time=10ms
+08:19:01.173  INFO: Sensor IaC hadolint report Sensor [iac]
+08:19:01.173  INFO: Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+08:19:01.173  INFO: Sensor IaC Azure Resource Manager Sensor [iac]
+08:19:01.174  INFO: There are no files to be analyzed for the Azure Resource Manager language
+08:19:01.174  INFO: Sensor IaC Azure Resource Manager Sensor [iac] (done) | time=0ms
+08:19:01.174  INFO: Sensor Java Config Sensor [iac]
+08:19:01.174  INFO: There are no files to be analyzed for the Java language
+08:19:01.174  INFO: Sensor Java Config Sensor [iac] (done) | time=0ms
+08:19:01.174  INFO: Sensor IaC Docker Sensor [iac]
+08:19:01.257  INFO: 3 source files to be analyzed
+08:19:01.366  INFO: 3/3 source files have been analyzed
+08:19:01.366  INFO: Sensor IaC Docker Sensor [iac] (done) | time=191ms
+08:19:01.366  INFO: Sensor C# Project Type Information [csharp]
+08:19:01.366  INFO: Sensor C# Project Type Information [csharp] (done) | time=0ms
+08:19:01.366  INFO: Sensor C# Analysis Log [csharp]
+08:19:01.366  INFO: Sensor C# Analysis Log [csharp] (done) | time=0ms
+08:19:01.366  INFO: Sensor C# Method Declarations [csharp]
+08:19:01.366  INFO: Sensor C# Method Declarations [csharp] (done) | time=0ms
+08:19:01.366  INFO: Sensor C# Properties [csharp]
+08:19:01.366  INFO: Sensor C# Properties [csharp] (done) | time=0ms
+08:19:01.366  INFO: Sensor Python Dependency Sensor [python]
+08:19:01.367  INFO: Sensor Python Dependency Sensor [python] (done) | time=0ms
+08:19:01.367  INFO: Sensor IaC Kubernetes Sensor [iac]
+08:19:01.440  INFO: There are no files to be analyzed for the Kubernetes language
+08:19:01.440  INFO: Sensor IaC Kubernetes Sensor [iac] (done) | time=72ms
+08:19:01.440  INFO: Sensor TextAndSecretsSensor [text]
+08:19:01.481  INFO: Available processors: 10
+08:19:01.481  INFO: Using 10 threads for analysis.
+08:19:01.788  INFO: The property "sonar.tests" is not set. To improve the analysis accuracy, we categorize a file as a test file if any of the following is true:
+  * The filename starts with "test"
+  * The filename contains "test." or "tests."
+  * Any directory in the file path is named: "doc", "docs", "test", "tests", "mock" or "mocks"
+  * Any directory in the file path has a name ending in "test" or "tests"
+
+08:19:01.814  INFO: Start fetching files for the text and secrets analysis
+08:19:01.827  INFO: Using Git CLI to retrieve dirty files
+08:19:01.843  INFO: Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+08:19:01.844  INFO: Starting the text and secrets analysis
+08:19:01.845  INFO: 49 source files to be analyzed for the text and secrets analysis
+08:19:01.935  INFO: 49/49 source files have been analyzed for the text and secrets analysis
+08:19:01.935  INFO: Skipped 8 file(s) in the secrets analysis due to automatic test file detection
+08:19:01.937  INFO: Sensor TextAndSecretsSensor [text] (done) | time=497ms
+08:19:01.938  INFO: ------------- Run sensors on project
+08:19:02.215  INFO: Sensor C# Telemetry processor [csharp]
+08:19:02.217  INFO: Sensor C# Telemetry processor [csharp] (done) | time=1ms
+08:19:02.217  INFO: Sensor C# Telemetry Json processor [csharp]
+08:19:02.224  INFO: Sensor C# Telemetry Json processor [csharp] (done) | time=7ms
+08:19:02.224  INFO: Sensor C# [csharp]
+08:19:02.411  INFO: Importing 3 Roslyn reports
+08:19:02.416  INFO: Found 3 MSBuild C# projects: 2 MAIN projects. 1 TEST project.
+08:19:02.417  INFO: Sensor C# [csharp] (done) | time=192ms
+08:19:02.417  INFO: Sensor Analysis Warnings import [csharp]
+08:19:02.420  INFO: Sensor Analysis Warnings import [csharp] (done) | time=3ms
+08:19:02.420  INFO: Sensor C# File Caching Sensor [csharp]
+08:19:02.432  INFO: Sensor C# File Caching Sensor [csharp] (done) | time=11ms
+08:19:02.432  INFO: Sensor C# Tests Coverage Report Import [csharp]
+08:19:02.435  INFO: Parsing the OpenCover report /var/jenkins_home/jobs/rfid-operations-console/workspace/./artifacts/quality/b68007bb-8317-402b-99aa-3dc3761ad7a6/coverage.opencover.xml
+08:19:02.500  INFO: Adding this code coverage report to the cache for later reuse: /var/jenkins_home/jobs/rfid-operations-console/workspace/./artifacts/quality/b68007bb-8317-402b-99aa-3dc3761ad7a6/coverage.opencover.xml
+08:19:02.518  INFO: Coverage Report Statistics: 13 files, 13 main files, 13 main files with coverage, 0 test files, 0 project excluded files, 0 other language files.
+08:19:02.518  INFO: Sensor C# Tests Coverage Report Import [csharp] (done) | time=86ms
+08:19:02.518  INFO: Sensor JavaScript/TypeScript/CSS analysis [javascript]
+08:19:02.529  INFO: No input files found for analysis
+08:19:02.529  INFO: Hit the cache for 0 out of 0
+08:19:02.530  INFO: Miss the cache for 0 out of 0
+08:19:02.530  INFO: Sensor JavaScript/TypeScript/CSS analysis [javascript] (done) | time=11ms
+08:19:02.530  INFO: Sensor IaC Project Sensor [iac]
+08:19:02.531  INFO: Sensor IaC Project Sensor [iac] (done) | time=1ms
+08:19:02.531  INFO: Sensor Zero Coverage Sensor
+08:19:02.532  INFO: Sensor Zero Coverage Sensor (done) | time=0ms
+08:19:02.532  INFO: ------------- Gather SCA dependencies on project
+08:19:02.537  INFO: Dependency analysis skipped
+08:19:02.549  INFO: CPD Executor 4 files had no CPD blocks
+08:19:02.550  INFO: CPD Executor Calculating CPD for 10 files
+08:19:02.567  INFO: CPD Executor CPD calculation finished (done) | time=17ms
+08:19:02.575  INFO: SCM revision ID 'f896577ef3b4d88ac5d9b33bd89a48254f52b3f8'
+08:19:02.676  INFO: Analysis report generated in 103ms, dir size=390.5 kB
+08:19:02.714  INFO: Analysis report compressed in 36ms, zip size=86.8 kB
+08:19:02.849  INFO: Analysis report uploaded in 136ms
+08:19:02.851  INFO: ------------- Check Quality Gate status
+08:19:02.851  INFO: Waiting for the analysis report to be processed (max 300s)
+08:19:07.903  INFO: QUALITY GATE STATUS: PASSED - View details on http://sonarqube:9000/dashboard?id=rfid-operations-console-devsecops-lab
+08:19:07.914  INFO: Analysis total time: 10.774 s
+08:19:07.916  INFO: SonarScanner Engine completed successfully
+08:19:07.982  The scanner engine has finished successfully
+08:19:07.983  Post-processing succeeded.
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Security)
+[Pipeline] sh
++ scripts/ci/security.sh
+2026-10-02T08:19:30Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-02T08:19:30Z	INFO	[misconfig] Misconfiguration scanning is enabled
+2026-10-02T08:19:30Z	INFO	[secret] Secret scanning is enabled
+2026-10-02T08:19:30Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln,misconfig' to disable secret scanning
+2026-10-02T08:19:30Z	INFO	[secret] Please see https://trivy.dev/v0.67/docs/scanner/secret#recommendation for faster secret detection
+2026-10-02T08:19:31Z	INFO	Number of language-specific files	num=3
+2026-10-02T08:19:31Z	INFO	[dotnet-core] Detecting vulnerabilities...
+2026-10-02T08:19:31Z	INFO	Detected config files	num=3
+
+📣 [34mNotices:[0m
+  - Version 0.75.0 of Trivy is now available, current version is 0.67.2
+
+To suppress version checks, run Trivy scans with the --skip-version-check flag
+
+2026-10-02T08:19:38Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-02T08:19:38Z	INFO	[misconfig] Misconfiguration scanning is enabled
+2026-10-02T08:19:38Z	INFO	[secret] Secret scanning is enabled
+2026-10-02T08:19:38Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln,misconfig' to disable secret scanning
+2026-10-02T08:19:38Z	INFO	[secret] Please see https://trivy.dev/v0.67/docs/scanner/secret#recommendation for faster secret detection
+2026-10-02T08:19:39Z	INFO	Detected OS	family="ubuntu" version="24.04"
+2026-10-02T08:19:39Z	INFO	[ubuntu] Detecting vulnerabilities...	os_version="24.04" pkg_num=97
+2026-10-02T08:19:39Z	INFO	Number of language-specific files	num=3
+2026-10-02T08:19:39Z	INFO	[dotnet-core] Detecting vulnerabilities...
+2026-10-02T08:19:39Z	INFO	Detected config files	num=0
+
+📣 [34mNotices:[0m
+  - Version 0.75.0 of Trivy is now available, current version is 0.67.2
+
+To suppress version checks, run Trivy scans with the --skip-version-check flag
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] withCredentials
+Masking supported pattern matches of $RFID_OPS_READER_KEY or $RFID_OPS_ADMIN_KEY
+[Pipeline] {
+[Pipeline] sh
++ scripts/ci/deploy.sh
+ Network rfid-ops-staging_default Creating 
+ Network rfid-ops-staging_default Creating 
+ Network rfid-ops-staging_default Created 
+ Network rfid-ops-staging_default Created 
+ Container rfid-ops-staging-app-1 Creating 
+ Container rfid-ops-staging-app-1 Created 
+ Container rfid-ops-staging-app-1 Starting 
+ Container rfid-ops-staging-app-1 Started 
+ Container rfid-ops-staging-app-1 Waiting 
+ Container rfid-ops-staging-app-1 Healthy 
+Smoke test passed for http://host.docker.internal:18080 using synthetic event DEMO-19-1790929185.
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Release)
+[Pipeline] withCredentials
+Masking supported pattern matches of $RFID_OPS_READER_KEY or $RFID_OPS_ADMIN_KEY
+[Pipeline] {
+[Pipeline] sh
++ scripts/ci/rollback-drill.sh
+ Container rfid-ops-production-app-1 Recreate 
+ Container rfid-ops-production-app-1 Recreated 
+ Container rfid-ops-production-app-1 Starting 
+ Container rfid-ops-production-app-1 Started 
+ Container rfid-ops-production-app-1 Waiting 
+ Container rfid-ops-production-app-1 Healthy 
+ Container rfid-ops-production-app-1 Stopping 
+ Container rfid-ops-production-app-1 Stopped 
+Release verification failed; restoring rfid-ops:release-1.0.17-341e4fa
+ Container rfid-ops-production-app-1 Recreate 
+ Container rfid-ops-production-app-1 Recreated 
+ Container rfid-ops-production-app-1 Starting 
+ Container rfid-ops-production-app-1 Started 
+ Container rfid-ops-production-app-1 Waiting 
+ Container rfid-ops-production-app-1 Healthy 
+Smoke test passed for http://host.docker.internal:28080 using synthetic event DEMO-19-1790929199.
+Restored sha256:5da899f91ebf789351faf22091cf81dc754891eed93e88f1ca555abdf58f2a4c; health and protected-route smoke checks passed.
+The previous release passed its rollback smoke test.
+Controlled local release failure restored rfid-ops:release-1.0.17-341e4fa and passed smoke checks.
+[Pipeline] withCredentials
+Masking supported pattern matches of $GIT_RELEASE_TOKEN
+[Pipeline] {
+[Pipeline] sh
++ scripts/ci/release.sh
+ Container rfid-ops-production-app-1 Recreate 
+ Container rfid-ops-production-app-1 Recreated 
+ Container rfid-ops-production-app-1 Starting 
+ Container rfid-ops-production-app-1 Started 
+ Container rfid-ops-production-app-1 Waiting 
+ Container rfid-ops-production-app-1 Healthy 
+Smoke test passed for http://host.docker.internal:28080 using synthetic event DEMO-19-1790929207.
+To https://github.com/stefan-mcf/rfid-operations-console-devsecops-lab.git
+ * [new tag]         v1.0.19-f896577 -> v1.0.19-f896577
+Published annotated release tag v1.0.19-f896577 at f896577ef3b4d88ac5d9b33bd89a48254f52b3f8.
+Released rfid-ops:release-1.0.19-f896577 to the production-like local environment.
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Monitoring and Alerting)
+[Pipeline] withCredentials
+Masking supported pattern matches of $RFID_OPS_READER_KEY or $GRAFANA_ADMIN_PASSWORD or $RFID_OPS_ADMIN_KEY
+[Pipeline] {
+[Pipeline] sh
++ scripts/ci/monitor.sh
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.635MB
+Step 1/4 : FROM prom/prometheus:v3.7.3 AS prometheus
+v3.7.3: Pulling from prom/prometheus
+Digest: sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038
+Status: Downloaded newer image for prom/prometheus:v3.7.3
+ ---> e851ec0ef6e0
+Step 2/4 : COPY monitoring/prometheus/prometheus.yml /etc/prometheus/prometheus.yml
+ ---> Using cache
+ ---> 31498856339f
+Step 3/4 : COPY monitoring/prometheus/rfid-ops.rules.yml /etc/prometheus/rfid-ops.rules.yml
+ ---> Using cache
+ ---> 36a994af915b
+Step 4/4 : USER nobody
+ ---> Using cache
+ ---> 6e1fc10aafa9
+Successfully built 6e1fc10aafa9
+Successfully tagged rfid-ops-prometheus:1.0.19-f896577
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.635MB
+Step 1/7 : FROM prom/prometheus:v3.7.3 AS prometheus
+ ---> e851ec0ef6e0
+Step 2/7 : COPY monitoring/prometheus/prometheus.yml /etc/prometheus/prometheus.yml
+ ---> Using cache
+ ---> 31498856339f
+Step 3/7 : COPY monitoring/prometheus/rfid-ops.rules.yml /etc/prometheus/rfid-ops.rules.yml
+ ---> Using cache
+ ---> 36a994af915b
+Step 4/7 : USER nobody
+ ---> Using cache
+ ---> 6e1fc10aafa9
+Step 5/7 : FROM prom/alertmanager:v0.28.1 AS alertmanager
+v0.28.1: Pulling from prom/alertmanager
+Digest: sha256:27c475db5fb156cab31d5c18a4251ac7ed567746a2483ff264516437a39b15ba
+Status: Downloaded newer image for prom/alertmanager:v0.28.1
+ ---> d1950c730ae9
+Step 6/7 : COPY monitoring/alertmanager/alertmanager.yml /etc/alertmanager/alertmanager.yml
+ ---> Using cache
+ ---> 4bc1c69830fa
+Step 7/7 : USER nobody
+ ---> Using cache
+ ---> 93083b81fda3
+Successfully built 93083b81fda3
+Successfully tagged rfid-ops-alertmanager:1.0.19-f896577
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.635MB
+Step 1/11 : FROM prom/prometheus:v3.7.3 AS prometheus
+ ---> e851ec0ef6e0
+Step 2/11 : COPY monitoring/prometheus/prometheus.yml /etc/prometheus/prometheus.yml
+ ---> Using cache
+ ---> 31498856339f
+Step 3/11 : COPY monitoring/prometheus/rfid-ops.rules.yml /etc/prometheus/rfid-ops.rules.yml
+ ---> Using cache
+ ---> 36a994af915b
+Step 4/11 : USER nobody
+ ---> Using cache
+ ---> 6e1fc10aafa9
+Step 5/11 : FROM prom/alertmanager:v0.28.1 AS alertmanager
+ ---> d1950c730ae9
+Step 6/11 : COPY monitoring/alertmanager/alertmanager.yml /etc/alertmanager/alertmanager.yml
+ ---> Using cache
+ ---> 4bc1c69830fa
+Step 7/11 : USER nobody
+ ---> Using cache
+ ---> 93083b81fda3
+Step 8/11 : FROM grafana/grafana:12.3.0 AS grafana
+12.3.0: Pulling from grafana/grafana
+Digest: sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8
+Status: Downloaded newer image for grafana/grafana:12.3.0
+ ---> 7c0ca928b5f6
+Step 9/11 : COPY monitoring/grafana/provisioning /etc/grafana/provisioning
+ ---> Using cache
+ ---> f23b1567bb69
+Step 10/11 : COPY monitoring/grafana/dashboards /var/lib/grafana/dashboards
+ ---> Using cache
+ ---> 6cf487772c0d
+Step 11/11 : USER 472
+ ---> Using cache
+ ---> 39b8eb6498fa
+Successfully built 39b8eb6498fa
+Successfully tagged rfid-ops-grafana:1.0.19-f896577
+ Container rfid-ops-alert-receiver Recreate 
+ Container rfid-ops-alert-receiver Recreated 
+ Container rfid-ops-alertmanager Recreate 
+ Container rfid-ops-alertmanager Recreated 
+ Container rfid-ops-prometheus Recreate 
+ Container rfid-ops-prometheus Recreated 
+ Container rfid-ops-grafana Recreate 
+ Container rfid-ops-grafana Recreated 
+ Container rfid-ops-alert-receiver Starting 
+ Container rfid-ops-alert-receiver Started 
+ Container rfid-ops-alertmanager Starting 
+ Container rfid-ops-alertmanager Started 
+ Container rfid-ops-prometheus Starting 
+ Container rfid-ops-prometheus Started 
+ Container rfid-ops-grafana Starting 
+ Container rfid-ops-grafana Started 
+ Container rfid-ops-alertmanager Waiting 
+ Container rfid-ops-alert-receiver Waiting 
+ Container rfid-ops-grafana Waiting 
+ Container rfid-ops-prometheus Waiting 
+ Container rfid-ops-grafana Healthy 
+ Container rfid-ops-prometheus Healthy 
+ Container rfid-ops-alertmanager Healthy 
+ Container rfid-ops-alert-receiver Healthy 
+curl: (52) Empty reply from server
+curl: (52) Empty reply from server
+curl: (52) Empty reply from server
+ Container rfid-ops-production-app-1 Stopping 
+ Container rfid-ops-production-app-1 Stopped 
+curl: (52) Empty reply from server
+Monitoring verified and a controlled local outage triggered RfidOpsInstanceDown.
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] archiveArtifacts
+Archiving artifacts
+Recording fingerprints
+[Pipeline] sh
++ RFID_OPS_IMAGE=rfid-ops:1.0.19-f896577 docker compose --project-name rfid-ops-staging --file deploy/compose.staging.yml down
+ Container rfid-ops-staging-app-1 Stopping 
+ Container rfid-ops-staging-app-1 Stopped 
+ Container rfid-ops-staging-app-1 Removing 
+ Container rfid-ops-staging-app-1 Removed 
+ Network rfid-ops-staging_default Removing 
+ Network rfid-ops-staging_default Removed 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

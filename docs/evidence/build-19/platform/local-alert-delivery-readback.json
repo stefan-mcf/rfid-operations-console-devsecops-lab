@@ -1,0 +1,107 @@
+{
+  "captured_utc": "2026-10-02T08:24:53.801491+00:00",
+  "build": 19,
+  "source": "docker logs --since build-start --timestamps rfid-ops-alert-receiver",
+  "build_started_at": "2026-10-02T08:16:41.345000Z",
+  "log_sha256": "752003afcc5bc8c5447506eed2ea99f6484c3ab6390daf2ec95444f9aad8abaa",
+  "incident_starts_at": "2026-10-02T08:20:49.936Z",
+  "received": [
+    {
+      "received_at": "2026-10-02T08:20:50.995227846Z",
+      "status": "firing"
+    },
+    {
+      "received_at": "2026-10-02T08:20:55.964668793Z",
+      "status": "resolved"
+    }
+  ],
+  "events": [
+    {
+      "receiver": "local-evidence-sink",
+      "status": "firing",
+      "alerts": [
+        {
+          "status": "firing",
+          "labels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like",
+            "instance": "host.docker.internal:28080",
+            "job": "rfid-operations-console",
+            "severity": "critical"
+          },
+          "annotations": {
+            "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+            "summary": "RFID Operations Console is unreachable"
+          },
+          "startsAt": "2026-10-02T08:20:49.936Z",
+          "endsAt": "0001-01-01T00:00:00Z",
+          "generatorURL": "http://f9b5b8142e63:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0&g0.tab=1",
+          "fingerprint": "af193e0bf014fc73"
+        }
+      ],
+      "groupLabels": {
+        "alertname": "RfidOpsInstanceDown",
+        "environment": "production-like"
+      },
+      "commonLabels": {
+        "alertname": "RfidOpsInstanceDown",
+        "environment": "production-like",
+        "instance": "host.docker.internal:28080",
+        "job": "rfid-operations-console",
+        "severity": "critical"
+      },
+      "commonAnnotations": {
+        "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+        "summary": "RFID Operations Console is unreachable"
+      },
+      "externalURL": "http://45e45fb24188:9093",
+      "version": "4",
+      "groupKey": "{}:{alertname=\"RfidOpsInstanceDown\", environment=\"production-like\"}",
+      "truncatedAlerts": 0
+    },
+    {
+      "receiver": "local-evidence-sink",
+      "status": "resolved",
+      "alerts": [
+        {
+          "status": "resolved",
+          "labels": {
+            "alertname": "RfidOpsInstanceDown",
+            "environment": "production-like",
+            "instance": "host.docker.internal:28080",
+            "job": "rfid-operations-console",
+            "severity": "critical"
+          },
+          "annotations": {
+            "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+            "summary": "RFID Operations Console is unreachable"
+          },
+          "startsAt": "2026-10-02T08:20:49.936Z",
+          "endsAt": "2026-10-02T08:20:54.936Z",
+          "generatorURL": "http://f9b5b8142e63:9090/graph?g0.expr=up%7Bjob%3D%22rfid-operations-console%22%7D+%3D%3D+0&g0.tab=1",
+          "fingerprint": "af193e0bf014fc73"
+        }
+      ],
+      "groupLabels": {
+        "alertname": "RfidOpsInstanceDown",
+        "environment": "production-like"
+      },
+      "commonLabels": {
+        "alertname": "RfidOpsInstanceDown",
+        "environment": "production-like",
+        "instance": "host.docker.internal:28080",
+        "job": "rfid-operations-console",
+        "severity": "critical"
+      },
+      "commonAnnotations": {
+        "description": "The production-like metrics endpoint has been unreachable for 15 seconds.",
+        "summary": "RFID Operations Console is unreachable"
+      },
+      "externalURL": "http://45e45fb24188:9093",
+      "version": "4",
+      "groupKey": "{}:{alertname=\"RfidOpsInstanceDown\", environment=\"production-like\"}",
+      "truncatedAlerts": 0
+    }
+  ],
+  "archive_boundary": "Separate post-run receiver readback; the Jenkins-archived log is preserved unchanged."
+}
