@@ -1,4 +1,4 @@
-"""Isolated release tests using simulated Docker/HTTP and real local Git repositories."""
+"""Release integration tests belonging to the MSBuild test project."""
 import json
 import os
 from pathlib import Path
