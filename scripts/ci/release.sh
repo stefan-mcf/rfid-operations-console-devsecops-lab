@@ -4,6 +4,12 @@ source "$(dirname "$0")/common.sh"
 require_value RFID_OPS_VERSION
 require_value RFID_OPS_READER_KEY
 require_value RFID_OPS_ADMIN_KEY
+if [[ "${RFID_OPS_RELEASE_DRILL:-false}" == true ]]; then
+  case "$RFID_OPS_HOST_ADDRESS" in
+    127.0.0.1|localhost|host.docker.internal) ;;
+    *) echo "The rollback drill requires a local host." >&2; exit 1 ;;
+  esac
+fi
 
 evidence_directory="${RFID_OPS_RELEASE_EVIDENCE_DIRECTORY:-artifacts/release}"
 mkdir -p .pipeline/release "$evidence_directory"
@@ -16,10 +22,20 @@ previous_image="$(docker inspect rfid-ops-production-app-1 --format '{{.Config.I
 if [[ -n "$previous_image" ]]; then
   previous_image_id="$(docker inspect rfid-ops-production-app-1 --format '{{.Image}}')"
   test -n "$previous_image_id"
+  test "$(docker image inspect "$previous_image_id" --format '{{.Id}}')" = "$previous_image_id"
+  previous_version="$(docker image inspect "$previous_image_id" \
+    --format '{{ index .Config.Labels "org.opencontainers.image.version" }}')"
+  previous_commit="$(docker image inspect "$previous_image_id" \
+    --format '{{ index .Config.Labels "org.opencontainers.image.revision" }}')"
+  test -n "$previous_version"
+  test -n "$previous_commit"
   printf '%s\n' "$previous_image" > .pipeline/release/previous-image
   printf '%s\n' "$previous_image_id" > .pipeline/release/previous-image-id
 else
   rm -f .pipeline/release/previous-image .pipeline/release/previous-image-id
+fi
+if [[ "${RFID_OPS_RELEASE_DRILL:-false}" == true ]]; then
+  test -n "$previous_image"
 fi
 
 docker tag "$source_image" "$release_image"
@@ -52,11 +68,6 @@ export RFID_OPS_BASE_URL="http://${RFID_OPS_HOST_ADDRESS}:${RFID_OPS_PRODUCTION_
 export RFID_OPS_EVIDENCE_DIRECTORY="$evidence_directory"
 
 if [[ "${RFID_OPS_RELEASE_DRILL:-false}" == true ]]; then
-  case "$RFID_OPS_HOST_ADDRESS" in
-    127.0.0.1|localhost|host.docker.internal) ;;
-    *) echo "The rollback drill requires a local host." >&2; false ;;
-  esac
-  test -n "$previous_image"
   docker compose --project-name rfid-ops-production \
     --file deploy/compose.production.yml stop app
   if curl --fail --silent --show-error --max-time 5 "$RFID_OPS_BASE_URL/health" \

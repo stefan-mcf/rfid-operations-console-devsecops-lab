@@ -15,7 +15,7 @@ p = Path(os.environ['SIMULATION_STATE'])
 s = json.loads(p.read_text()); a = sys.argv[1:]; name = Path(sys.argv[0]).name
 def save(): p.write_text(json.dumps(s))
 def image(name):
-    old = name == 'rfid-ops:release-old'
+    old = name in ('rfid-ops:release-old', 'sha256:old')
     return {'Id': 'sha256:old' if old else 'sha256:new',
             'Config': {'Labels': {'org.opencontainers.image.version': 'old' if old else 'new',
                                   'org.opencontainers.image.revision': 'old-commit' if old else 'new-commit'}}}
@@ -26,6 +26,8 @@ if name == 'docker':
         if not s['current']: sys.exit(1)
         print(image(s['current'])['Id'] if a[-1] == '{{.Image}}' else s['current'])
     elif a[:2] == ['image', 'inspect']:
+        if os.environ.get('SIMULATION_MISSING_OLD_TAG') == '1' and a[2] == 'rfid-ops:release-old': sys.exit(1)
+        if os.environ.get('SIMULATION_MISSING_OLD_ID') == '1' and a[2] == 'sha256:old': sys.exit(1)
         data = image(a[2])
         if '--format' not in a: print(json.dumps([data]))
         elif a[-1] == '{{.Id}}': print(data['Id'])
@@ -35,8 +37,8 @@ if name == 'docker':
     elif a[0] == 'compose':
         if 'up' in a:
             s['current'] = os.environ['RFID_OPS_IMAGE']; s['healthy'] = True
-            if os.environ.get('SIMULATION_FAIL_CANDIDATE') == '1' and s['current'] != 'rfid-ops:release-old': s['healthy'] = False
-            if os.environ.get('SIMULATION_FAIL_ROLLBACK') == '1' and s['current'] == 'rfid-ops:release-old': s['healthy'] = False
+            if os.environ.get('SIMULATION_FAIL_CANDIDATE') == '1' and image(s['current'])['Id'] != 'sha256:old': s['healthy'] = False
+            if os.environ.get('SIMULATION_FAIL_ROLLBACK') == '1' and image(s['current'])['Id'] == 'sha256:old': s['healthy'] = False
             save()
         elif 'stop' in a: s['healthy'] = False; save()
         elif 'ps' in a: print(json.dumps({'Image': s['current'], 'Health': 'healthy' if s['healthy'] else 'unhealthy'}))
@@ -122,8 +124,33 @@ class ReleaseTests(unittest.TestCase):
         manifest = self.json('artifacts/rollback-drill/rollback/rollback-manifest.json')
         self.assertEqual(manifest['imageId'], 'sha256:old')
         self.assertEqual(manifest['version'], 'old')
-        self.assertEqual(json.loads(self.state.read_text())['current'], 'rfid-ops:release-old')
+        self.assertEqual(json.loads(self.state.read_text())['current'], 'sha256:old')
         self.assertEqual(self.remote_tags(), '')
+
+    def test_missing_previous_tag_still_restores_verified_image_id(self):
+        self.env['SIMULATION_MISSING_OLD_TAG'] = '1'
+        self.run_script('rollback-drill.sh')
+        manifest = self.json('artifacts/rollback-drill/rollback/rollback-manifest.json')
+        self.assertEqual(manifest['image'], 'rfid-ops:release-old')
+        self.assertEqual(manifest['runtimeImage'], 'sha256:old')
+        self.assertEqual(manifest['imageId'], 'sha256:old')
+        self.assertEqual(self.remote_tags(), '')
+
+    def test_missing_previous_image_fails_before_replacing_healthy_container(self):
+        self.env['SIMULATION_MISSING_OLD_ID'] = '1'
+        self.run_script('rollback-drill.sh', success=False)
+        state = json.loads(self.state.read_text())
+        self.assertEqual(state['current'], 'rfid-ops:release-old')
+        self.assertTrue(state['healthy'])
+        self.assertFalse(any(call[0] == 'compose' and 'up' in call for call in state['calls']))
+        self.assertFalse(any(call[0] == 'compose' and 'stop' in call for call in state['calls']))
+        self.assertEqual(self.remote_tags(), '')
+
+    def test_direct_drill_rejects_nonlocal_target_before_docker_commands(self):
+        self.env['RFID_OPS_RELEASE_DRILL'] = 'true'
+        self.env['RFID_OPS_HOST_ADDRESS'] = 'remote.example'
+        self.run_script('release.sh', success=False)
+        self.assertEqual(json.loads(self.state.read_text())['calls'], [])
 
     def test_smoke_failure_restores_previous_without_publishing(self):
         self.env['SIMULATION_FAIL_CANDIDATE'] = '1'

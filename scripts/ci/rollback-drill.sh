@@ -20,6 +20,7 @@ if [[ -z "$previous_image" ]]; then
   echo "A rollback drill requires an existing release; the first release will establish it."
   exit 0
 fi
+previous_image_id="$(docker inspect rfid-ops-production-app-1 --format '{{.Image}}')"
 
 curl --fail --silent --show-error --max-time 5 \
   "http://${RFID_OPS_HOST_ADDRESS}:${RFID_OPS_PRODUCTION_PORT:-28080}/health" \
@@ -32,12 +33,12 @@ result=$?
 set -e
 test "$result" -ne 0
 test -s "$evidence_directory/controlled-failure.json"
-jq -e --arg previous "$previous_image" \
-  '.status == "restored" and .image == $previous and .smoke == "passed"' \
+jq -e --arg previous "$previous_image" --arg previousId "$previous_image_id" \
+  '.status == "restored" and .image == $previous and .imageId == $previousId and .smoke == "passed"' \
   "$evidence_directory/rollback/rollback-manifest.json" >/dev/null
-test "$(docker inspect rfid-ops-production-app-1 --format '{{.Config.Image}}')" = "$previous_image"
-jq -n --arg previous "$previous_image" --argjson releaseExitCode "$result" \
-  '{status: "passed", previousImage: $previous, releaseExitCode: $releaseExitCode,
+test "$(docker inspect rfid-ops-production-app-1 --format '{{.Image}}')" = "$previous_image_id"
+jq -n --arg previous "$previous_image" --arg previousId "$previous_image_id" --argjson releaseExitCode "$result" \
+  '{status: "passed", previousImage: $previous, previousImageId: $previousId, releaseExitCode: $releaseExitCode,
     failure: "stopped candidate failed its health check", automaticRollback: "passed"}' \
   > "$evidence_directory/drill-manifest.json"
 echo "Controlled local release failure restored $previous_image and passed smoke checks."

@@ -13,8 +13,9 @@ if [[ ! -s "$previous_image_file" || ! -s .pipeline/release/previous-image-id ]]
   exit 1
 fi
 
-export RFID_OPS_IMAGE="$(<"$previous_image_file")"
+previous_image="$(<"$previous_image_file")"
 expected_image_id="$(<.pipeline/release/previous-image-id)"
+export RFID_OPS_IMAGE="$expected_image_id"
 image_id="$(docker image inspect "$RFID_OPS_IMAGE" --format '{{.Id}}')"
 test -n "$image_id"
 test "$image_id" = "$expected_image_id"
@@ -39,12 +40,12 @@ test "$(docker inspect rfid-ops-production-app-1 --format '{{.Image}}')" = "$ima
 docker image inspect "$RFID_OPS_IMAGE" > "$RFID_OPS_EVIDENCE_DIRECTORY/image-inspect.json"
 docker compose --project-name rfid-ops-production --file deploy/compose.production.yml \
   ps --format json > "$RFID_OPS_EVIDENCE_DIRECTORY/compose-state.json"
-jq -n --arg image "$RFID_OPS_IMAGE" \
+jq -n --arg image "$previous_image" --arg runtimeImage "$RFID_OPS_IMAGE" \
   --arg fromImage "${RFID_OPS_ROLLBACK_FROM_IMAGE:-unknown}" \
   --arg imageId "$image_id" \
   --arg commit "$commit" \
   --arg version "$RFID_OPS_VERSION" --arg target "$RFID_OPS_BASE_URL" \
-  '{status: "restored", fromImage: $fromImage, image: $image, imageId: $imageId,
+  '{status: "restored", fromImage: $fromImage, image: $image, runtimeImage: $runtimeImage, imageId: $imageId,
     commit: $commit, version: $version, target: $target, smoke: "passed"}' \
   > "$RFID_OPS_EVIDENCE_DIRECTORY/rollback-manifest.json"
 printf '%s\n' "$RFID_OPS_IMAGE" > .pipeline/release/current-image
