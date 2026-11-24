@@ -8,9 +8,11 @@ A .NET 10 application for registering tags, evaluating access and reviewing deci
 
 [Demonstration](https://drive.google.com/file/d/1IiOHtabuf0zDHN0I_kxpE-9BG_8kJgIL/view?usp=drivesdk) · [Jenkinsfile](Jenkinsfile) · [Build results](docs/evidence/README.md)
 
-![RFID console captured after Jenkins build 19](docs/evidence/build-19/visual/released-application.png)
+## What happened when the candidate failed its health check
 
-*Historical local application capture, 2 October 2026. No physical reader is connected in this lab.*
+In the [2 October 2026 Jenkins lab run](docs/evidence/build-19/README.md), a controlled failure made the candidate unhealthy. The pipeline [restored the previous immutable image](docs/evidence/build-19/artifacts/rollback-drill/rollback/rollback-manifest.json), then a [simulated tag check](docs/evidence/build-19/artifacts/rollback-drill/rollback/access-decision.json) returned `Granted` with reason `ActiveRegistration`.
+
+The [console capture](docs/evidence/build-19/visual/released-application.png) shows the released local application. The archived run used simulated readers.
 
 ## How it works
 
